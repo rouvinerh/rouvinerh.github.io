@@ -12,42 +12,61 @@ function LoadingView({ onLoadingComplete }: { onLoadingComplete: () => void }) {
       '[+] Loading work experience...',
       '[+] Loading projects...',
       '[+] Loading resume...',
-      '[+] Preparing to load website...',
       '[+] Website loaded!'
     ];
-  
+
+    const [skipButtonVisible, setSkipButtonVisible] = useState(false);
     const [showOutput, setShowOutput] = useState(false);
     const [outputComplete, setOutputComplete] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSkipButtonVisible(true);
+        }, 50); 
+    }, []);
+
+    const skipAnimation = () => {
+        setShowOutput(true);
+        setOutputComplete(true);
+        onLoadingComplete();
+    };
   
     return (
-      <div className="console-container">
-        <div className="command-line">
-          <ConsoleTyping 
-            lines={[commandLine]} 
-            onTypingComplete={() => setTimeout(() => setShowOutput(true), 500)} 
-            typingSpeed={50}
-          />
-        </div>
+        <div className="console-container">
+          <div className="command-line">
+            <ConsoleTyping 
+              lines={[commandLine]} 
+              onTypingComplete={() => setTimeout(() => setShowOutput(true), 500)} 
+              typingSpeed={50}
+            />
+          </div>
   
-        {showOutput && (
-          <ConsoleOutput
-            lines={outputLines}
-            onComplete={() => {
-              setTimeout(() => {
-                setOutputComplete(true);
-                onLoadingComplete();
-              }, 1300);
-            }}
-            nextLineDelay={500}
-          />
-        )}
-      </div>
-    );
+          {showOutput && !outputComplete && (
+            <ConsoleOutput
+              lines={outputLines}
+              onComplete={() => {
+                setTimeout(() => {
+                  setOutputComplete(true);
+                  onLoadingComplete();
+                }, 1300);
+              }}
+              nextLineDelay={500}
+            />
+          )}
+  
+            <button
+                className={`skip-button ${skipButtonVisible ? 'visible' : ''}`}
+                onClick={skipAnimation}
+            >
+                ./skip-animation<span className={'blinking-cursor'}></span>
+            </button>
+        </div>
+      );
   }
 
 function AboutView() {
     const aboutPhrases = [
-        "a cybersecurity enthusiast.",
+        "a cybersecurity engineer.",
         "a CTF player.",
         "an Offensive Security guy.",
         "an InfoSec student."
@@ -60,9 +79,10 @@ function AboutView() {
                 I'm <span className="typed-about-text"><ConsoleTypingWithBackspace texts={aboutPhrases} typingSpeed={70} backspaceSpeed={30} waitDuration={1000} /></span>
             </p>
 
-            <p id="about-description" className="terminal-box" >
-                whoami<span className={'blinking-cursor'}></span><p></p>Hello, I'm Rouvin, a cybersecurity student specialising in offensive security, and I love to break things.
-                </p>
+            <p id="about-description" className="terminal-box">
+                whoami<span className={'blinking-cursor'}></span><br />
+                Hello, I'm Rouvin, a cybersecurity student from Singapore specialising in offensive security, and I love to break things.
+            </p>
             <div className="social-icons-container">
                 <a href="https://linkedin.com/in/rouvinerh" className="social-tooltip" data-tooltip="LinkedIn">
                     <FaLinkedin className="social-icon" />
@@ -80,28 +100,25 @@ function AboutView() {
 }
 
 const EducationView = () => {
-    const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef(null);
-  
+    const [isVisible, setIsVisible] = useState(false);
+    
     useEffect(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        },
-        { threshold: 0.1 }
-      );
-  
-      if (sectionRef.current) {
-        observer.observe(sectionRef.current);
-      }
-  
-      return () => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect(); 
+                }
+            },
+            { threshold: 0.1 } 
+        );
+    
         if (sectionRef.current) {
-          observer.unobserve(sectionRef.current);
+            observer.observe(sectionRef.current);
         }
-      };
+    
+        return () => observer.disconnect();
     }, []);
     return (
     <section 
@@ -110,7 +127,7 @@ const EducationView = () => {
         className={`education-view ${isVisible ? 'visible' : ''}`}
     >
         <div className="terminal-box">
-            education --university --certs<span className={'blinking-cursor'}></span>
+            ./education --uni --certs<span className={'blinking-cursor'}></span>
         </div>
 
         <div className="education-split">
@@ -150,10 +167,127 @@ const EducationView = () => {
     );
 };
 
-// const ExperienceView = () => (
+const ExperienceView = () => {
+    const experienceData = [
+        {
+            role: 'Bug Bounty Intern',
+            company: 'PayPal',
+            period: 'May 2025 — Oct 2025',
+            description: 'Summer Intern with Bug Bounty team.',
+            logoSrc: 'paypal-logo.png',
+        },
+        {
+            role: 'Sentinel Instructor',
+            company: 'DART',
+            period: 'Mar 2024 — Present',
+            description: 'Taught cybersecurity to students as part of Sentinel programme by MINDEF.',
+            logoSrc: 'dart-logo.jpg'
+        },
+        {
+            role: 'Security Engineer Intern',
+            company: 'Ascenda Loyalty',
+            period: 'May 2024 - Aug 2024',
+            description: 'White-box web application pentesting, identified 20+ security flaws, remediated them with developers, and DAST tool development.',
+            logoSrc: 'ascenda-logo.png',
+        },
+        {
+            role: 'Attack Simulation Intern',
+            company: 'Cyber Security Agency of Singapore',
+            period: 'May 2023 - Aug 2023',
+            description: 'Created Caldera adversary profiles and built a simulated Active Directory network using Vagrant for running exploits.',
+            logoSrc: 'csa-logo.jpg',
+        },
+    ];
 
-// );
+    const [visibleItems, setVisibleItems] = useState<number[]>([]);
+    const [terminalVisible, setTerminalVisible] = useState(false);
 
+    useEffect(() => {
+        const terminalObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTerminalVisible(true);
+                    terminalObserver.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        const terminalElement = document.querySelector('#experience .terminal-box');
+        if (terminalElement) {
+            terminalObserver.observe(terminalElement);
+        }
+
+        return () => terminalObserver.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const animatedElements = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(animatedElements).indexOf(entry.target);
+                        setVisibleItems((prev) => [...new Set([...prev, index])]);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const animatedElements = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(animatedElements).indexOf(entry.target);
+                        setVisibleItems((prev) => [...new Set([...prev, index])]);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+
+    return (
+        <section id="experience" className="experience-section">
+            <div className={`terminal-box ${terminalVisible ? 'visible' : ''}`}>
+                ./experience --list-all<span className="blinking-cursor"></span>
+            </div>
+
+            <div className="timeline">
+                {experienceData.map((exp, index) => (
+                    <div
+                        key={index}
+                        className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${
+                            visibleItems.includes(index) ? 'visible' : ''
+                        }`}
+                    >
+                        <div className="timeline-circle">
+                            {exp.logoSrc && <img src={exp.logoSrc} alt={`${exp.company} logo`} />}
+                        </div>
+                        <div className="timeline-content">
+                            <span className="timeline-role">{exp.role}</span>
+                            <span className="timeline-company">{exp.company}</span>
+                            <span className="timeline-date">{exp.period}</span>
+                            <span className="timeline-description">{exp.description}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
 // const ProjectsView = () => (
 
 // );
@@ -182,7 +316,7 @@ export {
     LoadingView,
     AboutView,
     EducationView,
-    // ExperienceView,
+    ExperienceView,
     // ProjectsView,
     // ResumeView,
     // ContactsView,
