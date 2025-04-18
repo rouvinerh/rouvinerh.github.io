@@ -526,7 +526,6 @@ h1 {
     .timeline-item.left,
     .timeline-item.right {
         left: 0; 
-        text-align: left; 
         width: 110%;
         padding-left: 4.5rem; 
         padding-right: 2.5rem;
@@ -538,6 +537,7 @@ h1 {
         border-left-color: #48B5E0;
         border-right-color: transparent;
         transform: translateX(40px);
+        text-align: left; 
     }
 
     .timeline-item.right .timeline-circle,
