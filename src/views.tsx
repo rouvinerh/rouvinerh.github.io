@@ -262,7 +262,7 @@ const ExperienceView = () => {
     return (
         <section id="experience" className="experience-section">
             <div className={`terminal-box ${terminalVisible ? 'visible' : ''}`}>
-                ./experience --list-all<span className="blinking-cursor"></span>
+                ./experience --all<span className="blinking-cursor"></span>
             </div>
 
             <div className="timeline">
