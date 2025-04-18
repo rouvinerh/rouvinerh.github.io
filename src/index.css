@@ -328,15 +328,15 @@ h1 {
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     max-width: 370px;
-    width: 100%;
     box-sizing: border-box;
 }
 
 .timeline-item.left .timeline-content {
     border-right-color: #48B5E0;
-    border-left: none;
+    border-left-color: none;
     text-align: right;
     margin-left: auto; 
+    margin-right: 0;
 }
 
 .timeline-item.right .timeline-content {
@@ -344,6 +344,7 @@ h1 {
     border-right: none;
     text-align: left;
     margin-right: auto;
+    margin-left: 0; 
 }
 
 .timeline-content:hover {
@@ -520,20 +521,17 @@ h1 {
     .timeline::before {
         left: 20px;
     }
-        
+
 
     .timeline-item.left,
     .timeline-item.right {
         left: 0; 
         text-align: left; 
-        width: 100%;
-        padding-left: 2.5rem; 
-        padding-right: 2rem;
+        width: 110%;
+        padding-left: 4.5rem; 
+        padding-right: 2.5rem;
     }
 
-    .timeline-content {
-        margin-left: 2rem; 
-    }
 
     .timeline-item.left .timeline-content,
     .timeline-item.right .timeline-content {
