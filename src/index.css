@@ -333,7 +333,7 @@ h1 {
 
 .timeline-item.left .timeline-content {
     border-right-color: #48B5E0;
-    border-left-color: none;
+    border-left-color: transparent;
     text-align: right;
     margin-left: auto; 
     margin-right: 0;
@@ -341,7 +341,7 @@ h1 {
 
 .timeline-item.right .timeline-content {
     border-left-color: #48B5E0;
-    border-right: none;
+    border-right: transparent;
     text-align: left;
     margin-right: auto;
     margin-left: 0; 
