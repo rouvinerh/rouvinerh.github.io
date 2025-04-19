@@ -382,9 +382,9 @@ const ProjectsView = () => {
                 {projectsData.map((project, index) => (
                     <div
                         key={index}
-                        className={`flip-card ${visibleItems.includes(index) ? 'visible' : ''} ${
-                            flippedStates[index] ? 'flipped' : ''
-                          }`}
+                        className={`flip-card ${flippedStates[index] ? 'flipped' : ''} ${
+                            visibleItems.includes(index) ? 'visible' : ''
+                        }`}
                         onClick={() => handleFlip(index)}
                     >
                         <div className="flip-card-inner">

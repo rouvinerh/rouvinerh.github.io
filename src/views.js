@@ -155,15 +155,15 @@ const ProjectsView = () => {
         },
         {
             title: '🖥️ Boot2Root',
-            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds today.',
+            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds so far.',
             imageSrc: '/images/portfolio_opt.png',
             link: 'https://app.hackthebox.com/profile/814999',
         },
     ];
-    const [terminalVisible, setTerminalVisible] = useState(false);
-    const [showBugImage, setShowBugImage] = useState(false);
-    const [flippedStates, setFlippedStates] = useState(Array(projectsData.length).fill(false));
     const [visibleItems, setVisibleItems] = useState([]);
+    const [terminalVisible, setTerminalVisible] = useState(false);
+    const [flippedStates, setFlippedStates] = useState(Array(projectsData.length).fill(false));
+    const [showBugImage, setShowBugImage] = useState(false);
     useEffect(() => {
         const terminalObserver = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
