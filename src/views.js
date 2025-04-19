@@ -57,7 +57,7 @@ const EducationView = () => {
         }
         return () => observer.disconnect();
     }, []);
-    return (_jsxs("section", { id: "education", ref: sectionRef, className: `education-view ${isVisible ? 'visible' : ''}`, children: [_jsxs("div", { className: "terminal-box", children: ["./education --uni --certs", _jsx("span", { className: 'blinking-cursor' })] }), _jsxs("div", { className: "education-split", children: [_jsxs("div", { className: "education-left", children: [_jsx("span", { className: "education-title", children: "National University of Singapore" }), _jsxs("div", { className: "college-details", children: [_jsx("span", { className: "degree", children: "Bachelor of Computing in Information Security" }), _jsx("span", { className: "college-description", children: "Expected Graduation: May 2026" }), _jsx("span", { className: "college-grade", children: "Current GPA: 4.71 / 5.00" })] }), _jsx("a", { href: "https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678", className: "social-tooltip", "data-tooltip": "Dean's List AY23/24 Semester 2", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "dean-list-logo.png", alt: "DeanList", className: "cert-logo" }) })] }), _jsxs("div", { className: "education-right", children: [_jsx("span", { className: "education-title", children: "Certifications" }), _jsxs("div", { className: "cert-logos", children: [_jsx("a", { href: "https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955", className: "social-tooltip", "data-tooltip": "OSED - Achieved in 2025", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "osed-logo.png", alt: "OSED", className: "cert-logo" }) }), _jsx("a", { href: "https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256", className: "social-tooltip", "data-tooltip": "OSWE - Achieved in 2025", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oswe-logo.png", alt: "OSWE", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82", className: "social-tooltip", "data-tooltip": "CRTE - Achieved in 2023", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crte-logo.webp", alt: "CRTE", className: "cert-logo" }) }), _jsx("a", { href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com", className: "social-tooltip", "data-tooltip": "CRTO - Achieved in 2023", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crto-logo.png", alt: "CRTO", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2", className: "social-tooltip", "data-tooltip": "OSCP - Achieved in 2022", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oscp-logo.png", alt: "OSCP", className: "cert-logo" }) })] })] })] })] }));
+    return (_jsxs("section", { id: "education", ref: sectionRef, className: `education-view ${isVisible ? 'visible' : ''}`, children: [_jsxs("div", { className: "terminal-box", children: ["./education --uni --certs", _jsx("span", { className: 'blinking-cursor' })] }), _jsxs("div", { className: "education-split", children: [_jsxs("div", { className: "education-left", children: [_jsx("span", { className: "education-title", children: "National University of Singapore" }), _jsxs("div", { className: "college-details", children: [_jsx("span", { className: "degree", children: "Bachelor of Computing in Information Security" }), _jsx("span", { className: "college-description", children: "Expected Graduation: May 2026" }), _jsx("span", { className: "college-grade", children: "Current GPA: 4.71 / 5.00" })] }), _jsx("a", { href: "https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678", className: "social-tooltip", "data-tooltip": "Dean's List AY23/24 Semester 2", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "dean-list-logo.png", alt: "DeanList", className: "cert-logo" }) })] }), _jsxs("div", { className: "education-right", children: [_jsx("span", { className: "education-title", children: "Certifications" }), _jsxs("div", { className: "cert-logos", children: [_jsx("a", { href: "https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955", className: "social-tooltip", "data-tooltip": "OffSec Exploit Developer", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "osed-logo.svg", alt: "OSED", className: "cert-logo" }) }), _jsx("a", { href: "https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256", className: "social-tooltip", "data-tooltip": "OffSec Web Expert", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oswe-logo.svg", alt: "OSWE", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82", className: "social-tooltip", "data-tooltip": "Certified Red Team Expert", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crte-logo.webp", alt: "CRTE", className: "cert-logo" }) }), _jsx("a", { href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com", className: "social-tooltip", "data-tooltip": "Certified Red Team Operator", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crto-logo.png", alt: "CRTO", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2", className: "social-tooltip", "data-tooltip": "OffSec Certified Professional", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oscp-logo.svg", alt: "OSCP", className: "cert-logo" }) })] })] })] })] }));
 };
 const ExperienceView = () => {
     const experienceData = [
@@ -106,17 +106,17 @@ const ExperienceView = () => {
         return () => terminalObserver.disconnect();
     }, []);
     useEffect(() => {
-        const animatedElements = document.querySelectorAll('.timeline-item');
+        const items = document.querySelectorAll('.timeline-item');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const index = Array.from(animatedElements).indexOf(entry.target);
+                    const index = Array.from(items).indexOf(entry.target);
                     setVisibleItems((prev) => [...new Set([...prev, index])]);
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
-        animatedElements.forEach((el) => observer.observe(el));
+        items.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
     useEffect(() => {
@@ -133,10 +133,88 @@ const ExperienceView = () => {
         animatedElements.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
-    return (_jsxs("section", { id: "experience", className: "experience-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./experience --all", _jsx("span", { className: "blinking-cursor" })] }), _jsx("div", { className: "timeline", children: experienceData.map((exp, index) => (_jsxs("div", { className: `timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${visibleItems.includes(index) ? 'visible' : ''}`, children: [_jsx("div", { className: "timeline-circle", children: exp.logoSrc && _jsx("img", { src: exp.logoSrc, alt: `${exp.company} logo` }) }), _jsxs("div", { className: "timeline-content", children: [_jsx("span", { className: "timeline-role", children: exp.role }), _jsx("span", { className: "timeline-company", children: exp.company }), _jsx("span", { className: "timeline-date", children: exp.period }), _jsx("span", { className: "timeline-description", children: exp.description })] })] }, index))) })] }));
+    return (_jsxs("section", { id: "experience", className: "experience-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./experiences --all", _jsx("span", { className: "blinking-cursor" })] }), _jsx("div", { className: "timeline", children: experienceData.map((exp, index) => (_jsxs("div", { className: `timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${visibleItems.includes(index) ? 'visible' : ''}`, children: [_jsx("div", { className: "timeline-circle", children: exp.logoSrc && _jsx("img", { src: exp.logoSrc, alt: `${exp.company} logo` }) }), _jsxs("div", { className: "timeline-content", children: [_jsx("span", { className: "timeline-role", children: exp.role }), _jsx("span", { className: "timeline-company", children: exp.company }), _jsx("span", { className: "timeline-date", children: exp.period }), _jsx("span", { className: "timeline-description", children: exp.description })] })] }, index))) })] }));
 };
-// const ProjectsView = () => (
-// );
+const ProjectsView = () => {
+    const projectsData = [
+        {
+            title: '📚 Security Journal',
+            description: 'Writing about web vulnerabilities, security blogs, and just about any of my security-related adventures in a GitBook.',
+            link: 'https://rouvin.gitbook.io',
+        },
+        {
+            title: '🐛 Bug Bounties',
+            description: 'Hunting and reporting bugs on YesWeHack or other Vulnerability Disclosure Programs whenever I can!',
+            link: '#',
+        },
+        {
+            title: '💀 Malware Development',
+            description: 'Learning defence evasion techniques and various methods of making calc.exe run with Maldev Academy.',
+            imageSrc: '/images/portfolio_opt.png',
+            link: 'https://github.com/rouvinerh/Malware-Tech',
+        },
+        {
+            title: '🖥️ Boot2Root',
+            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds today.',
+            imageSrc: '/images/portfolio_opt.png',
+            link: 'https://app.hackthebox.com/profile/814999',
+        },
+    ];
+    const [terminalVisible, setTerminalVisible] = useState(false);
+    const [showBugImage, setShowBugImage] = useState(false);
+    const [flippedStates, setFlippedStates] = useState(Array(projectsData.length).fill(false));
+    const [visibleItems, setVisibleItems] = useState([]);
+    useEffect(() => {
+        const terminalObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setTerminalVisible(true);
+                terminalObserver.disconnect();
+            }
+        }, { threshold: 0.1 });
+        const terminalElement = document.querySelector('#projects .terminal-box');
+        if (terminalElement)
+            terminalObserver.observe(terminalElement);
+        return () => terminalObserver.disconnect();
+    }, []);
+    const handleFlip = (index) => {
+        setFlippedStates(prev => {
+            const newState = [...prev];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
+    useEffect(() => {
+        if (showBugImage) {
+            document.body.style.overflow = 'hidden';
+        }
+        else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [showBugImage]);
+    useEffect(() => {
+        const animatedElements = document.querySelectorAll('.flip-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(animatedElements).indexOf(entry.target);
+                    setVisibleItems((prev) => [...new Set([...prev, index])]);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        animatedElements.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+    return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./projects --list", _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "projects-grid", children: [projectsData.map((project, index) => (_jsx("div", { className: `flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`, onClick: () => handleFlip(index), children: _jsxs("div", { className: "flip-card-inner", children: [_jsx("div", { className: "flip-card-front", children: _jsx("h3", { className: "project-title", children: project.title }) }), _jsxs("div", { className: "flip-card-back", children: [_jsx("p", { className: "project-description", children: project.description }), _jsx("a", { href: project.link, className: "about-button", target: "_blank", rel: "noopener noreferrer", onClick: (e) => {
+                                                if (index === 1) {
+                                                    e.preventDefault();
+                                                    setShowBugImage(true);
+                                                }
+                                            }, children: "About" })] })] }) }, index))), _jsxs("div", { className: `bug-image-popup ${showBugImage ? 'visible' : ''}`, children: [_jsx("p", { className: "bug-image-caption", children: "The funniest thing I own:" }), _jsx("img", { src: "best_tshirt.jpg", alt: "Bug Hunter Mode" }), _jsx("button", { onClick: () => setShowBugImage(false), className: "close-button", children: "\u2716" })] })] })] }));
+};
 // const ResumeView = () => (
 // );
 // const ContactsView = () => (
@@ -147,8 +225,7 @@ const ExperienceView = () => {
 // );
 // const FooterView = () => (
 // );
-export { LoadingView, AboutView, EducationView, ExperienceView,
-// ProjectsView,
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView,
 // ResumeView,
 // ContactsView,
 // HeaderView,

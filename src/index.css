@@ -20,6 +20,7 @@ body {
     color: #f2f2f2; 
     margin: 0;
     padding: 20px;
+    
 }
 
 h1 {
@@ -136,14 +137,15 @@ h1 {
     font-weight: bold; 
     background: #151515; 
     border-left: 3px solid #48B5E0;
-    border-radius: 0 4px 4px 0;
     transition: all 0.3s ease;
     border-radius: 8px;
+    box-shadow: 0 8px 24px #00000026;
 }
   
 .terminal-box:hover {
     background: #2b2b2b ;
-    box-shadow: 0 4px 4px #4885B066; 
+    box-shadow: 0 4px 4px #4885B066;
+    transition: all 0.3s ease;
 }
 
 .terminal-box::before {
@@ -253,6 +255,7 @@ h1 {
     gap: 2rem;
     flex-wrap: wrap;
     padding: 2rem;
+    
 }
 
 .cert-logo {
@@ -274,12 +277,18 @@ h1 {
 #experience .terminal-box {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
 }
 
 #experience .terminal-box.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+#experience .terminal-box:hover {
+    background: #2b2b2b;
+    box-shadow: 0 4px 4px #4885B066;
+    transition: all 0.3s ease;
 }
 
 .timeline {
@@ -305,6 +314,7 @@ h1 {
     width: 50%;
     padding: 2rem;
     box-sizing: border-box;
+    
 }
 
 .timeline-item.left {
@@ -324,11 +334,11 @@ h1 {
     border-radius: 8px;
     padding: 1.5rem;
     position: relative;
-    transition: all 0.3s ease;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
     max-width: 370px;
     box-sizing: border-box;
+    box-shadow: 0 8px 24px #00000026;
 }
 
 .timeline-item.left .timeline-content {
@@ -347,16 +357,16 @@ h1 {
     margin-left: 0; 
 }
 
-.timeline-content:hover {
-    background: #2b2b2b;
-    box-shadow: 0 4px 8px #4885B066;
-    transition: all 0.3s ease;
-}
-
 /* Content slide-in */
 .timeline-content {
     opacity: 0;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    background: #2b2b2b;
+    box-shadow: 0 4px 4px #4885B066;
+    transition: all 0.3s ease;
 }
 
 .timeline-item.left .timeline-content {
@@ -433,6 +443,179 @@ h1 {
     color: #f2f2f2; 
     margin-bottom: 0;
 }
+
+#projects .terminal-box {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
+}
+
+#projects .terminal-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#projects .terminal-box:hover {
+    background: #2b2b2b;
+    box-shadow: 0 4px 4px #4885B066;
+    transition: all 0.3s ease;
+}
+
+.projects-section {
+    padding: 4rem 2rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.flip-card {
+    perspective: 1000px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.flip-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    color: #f2f2f2;
+    background: #151515;
+    line-height: 1.8;
+    max-width: 650px;
+    box-shadow: 0 8px 24px #00000026;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flip-card-front:hover,
+.flip-card-back:hover {
+    box-shadow: 0 4px 8px #4885B066;
+}
+
+.flip-card-front {
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    flex-direction: column;
+    text-align: center;
+}
+
+.project-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.project-description {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+.about-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #D1B3DB;
+    color: #151515;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    margin-top: auto;
+}
+
+.about-button:hover {
+    background: #BE91CF;
+    text-decoration: underline;
+}
+
+.bug-image-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: rgba(21, 21, 21, 0.95);
+    padding: 1rem;
+    border: 2px solid #48B5E0;
+    border-radius: 8px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.bug-image-popup.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.bug-image-caption {
+    color: #f2f2f2;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.bug-image-popup img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 8px;
+}
+
+.close-button {
+    margin-top: 0.8rem;
+    background: #9B59B6;
+    color: #f2f2f2;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.close-button:hover {
+    background: #B388FF;
+}
+
 
 /* For mobile devices */
 @media (max-width: 768px) {
@@ -564,6 +747,16 @@ h1 {
     .timeline-item.visible .timeline-content {
         opacity: 1;
         transform: translateX(0);
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .bug-image-popup img {
+        max-width: 90vw;
+        max-height: 70vh;
+        border-radius: 4px;
     }
 
 }

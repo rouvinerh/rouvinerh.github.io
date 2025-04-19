@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
-import { LoadingView, AboutView, EducationView, ExperienceView } from "./views.js";
+import { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView } from "./views.js";
 
 function App() {
     const [showAbout, setShowAbout] = useState(false);
@@ -14,6 +14,7 @@ function App() {
             <AboutView />
             <EducationView />
             <ExperienceView />
+            <ProjectsView />
           </div>
         )}
       </div>

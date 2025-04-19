@@ -145,20 +145,20 @@ const EducationView = () => {
             <div className="education-right">
                 <span className="education-title">Certifications</span>
                 <div className="cert-logos">
-                    <a href="https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955" className="social-tooltip" data-tooltip="OSED - Achieved in 2025" target="_blank" rel="noopener noreferrer">
-                        <img src="osed-logo.png" alt="OSED" className="cert-logo" />
+                    <a href="https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955" className="social-tooltip" data-tooltip="OffSec Exploit Developer" target="_blank" rel="noopener noreferrer">
+                        <img src="osed-logo.svg" alt="OSED" className="cert-logo" />
                     </a>
-                    <a href="https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256" className="social-tooltip" data-tooltip="OSWE - Achieved in 2025" target="_blank" rel="noopener noreferrer">
-                        <img src="oswe-logo.png" alt="OSWE" className="cert-logo" />
+                    <a href="https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256" className="social-tooltip" data-tooltip="OffSec Web Expert" target="_blank" rel="noopener noreferrer">
+                        <img src="oswe-logo.svg" alt="OSWE" className="cert-logo" />
                     </a>
-                    <a href="https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82" className="social-tooltip" data-tooltip="CRTE - Achieved in 2023" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82" className="social-tooltip" data-tooltip="Certified Red Team Expert" target="_blank" rel="noopener noreferrer">
                         <img src="crte-logo.webp" alt="CRTE" className="cert-logo" />
                     </a>
-                    <a href="https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com" className="social-tooltip" data-tooltip="CRTO - Achieved in 2023" target="_blank" rel="noopener noreferrer">
+                    <a href="https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com" className="social-tooltip" data-tooltip="Certified Red Team Operator" target="_blank" rel="noopener noreferrer">
                         <img src="crto-logo.png" alt="CRTO" className="cert-logo" />
                     </a>
-                    <a href="https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2" className="social-tooltip" data-tooltip="OSCP - Achieved in 2022" target="_blank" rel="noopener noreferrer">
-                        <img src="oscp-logo.png" alt="OSCP" className="cert-logo" />
+                    <a href="https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2" className="social-tooltip" data-tooltip="OffSec Certified Professional" target="_blank" rel="noopener noreferrer">
+                        <img src="oscp-logo.svg" alt="OSCP" className="cert-logo" />
                     </a>
                 </div>
             </div>
@@ -222,12 +222,12 @@ const ExperienceView = () => {
     }, []);
 
     useEffect(() => {
-        const animatedElements = document.querySelectorAll('.timeline-item');
+        const items = document.querySelectorAll('.timeline-item');
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        const index = Array.from(animatedElements).indexOf(entry.target);
+                        const index = Array.from(items).indexOf(entry.target);
                         setVisibleItems((prev) => [...new Set([...prev, index])]);
                         observer.unobserve(entry.target);
                     }
@@ -236,7 +236,7 @@ const ExperienceView = () => {
             { threshold: 0.1 }
         );
 
-        animatedElements.forEach((el) => observer.observe(el));
+        items.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
 
@@ -262,7 +262,7 @@ const ExperienceView = () => {
     return (
         <section id="experience" className="experience-section">
             <div className={`terminal-box ${terminalVisible ? 'visible' : ''}`}>
-                ./experience --all<span className="blinking-cursor"></span>
+                ./experiences --all<span className="blinking-cursor"></span>
             </div>
 
             <div className="timeline">
@@ -288,10 +288,138 @@ const ExperienceView = () => {
         </section>
     );
 };
-// const ProjectsView = () => (
 
-// );
+const ProjectsView = () => {
+    const projectsData = [
+        {
+            title: '📚 Security Journal',
+            description: 'Writing about web vulnerabilities, security blogs, and just about any of my security-related adventures in a GitBook.',
+            link: 'https://rouvin.gitbook.io',
+        },
+        {
+            title: '🐛 Bug Bounties',
+            description: 'Hunting and reporting bugs on YesWeHack or other Vulnerability Disclosure Programs whenever I can!',
+            link: '#',
+        },
+        {
+            title: '💀 Malware Development',
+            description: 'Learning defence evasion techniques and various methods of making calc.exe run with Maldev Academy.',
+            imageSrc: '/images/portfolio_opt.png',
+            link: 'https://github.com/rouvinerh/Malware-Tech',
+        },
+        {
+            title: '🖥️ Boot2Root',
+            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds so far.',
+            imageSrc: '/images/portfolio_opt.png',
+            link: 'https://app.hackthebox.com/profile/814999',
+        },
+    ];
 
+    const [visibleItems, setVisibleItems] = useState<number[]>([]);
+    const [terminalVisible, setTerminalVisible] = useState(false);
+    const [flippedStates, setFlippedStates] = useState<boolean[]>(Array(projectsData.length).fill(false));
+    const [showBugImage, setShowBugImage] = useState(false);
+
+    useEffect(() => {
+        const terminalObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setTerminalVisible(true);
+                terminalObserver.disconnect();
+            }
+        }, { threshold: 0.1 });
+
+        const terminalElement = document.querySelector('#projects .terminal-box');
+        if (terminalElement) terminalObserver.observe(terminalElement);
+
+        return () => terminalObserver.disconnect();
+    }, []);
+
+    const handleFlip = (index: number) => {
+        setFlippedStates(prev => {
+            const newState = [...prev];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    };
+
+    useEffect(() => {
+        if (showBugImage) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [showBugImage]);
+
+    useEffect(() => {
+        const animatedElements = document.querySelectorAll('.flip-card');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(animatedElements).indexOf(entry.target);
+                        setVisibleItems((prev) => [...new Set([...prev, index])]);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
+    
+
+    return (
+        <section id="projects" className="projects-section">
+            <div className={`terminal-box ${terminalVisible ? 'visible' : ''}`}>
+                    ./projects --list<span className="blinking-cursor"></span>
+            </div>
+            <div className="projects-grid">
+                {projectsData.map((project, index) => (
+                    <div
+                        key={index}
+                        className={`flip-card ${visibleItems.includes(index) ? 'visible' : ''} ${
+                            flippedStates[index] ? 'flipped' : ''
+                          }`}
+                        onClick={() => handleFlip(index)}
+                    >
+                        <div className="flip-card-inner">
+                            <div className="flip-card-front">
+                                <h3 className="project-title">{project.title}</h3>
+                            </div>
+                            <div className="flip-card-back">
+                                <p className="project-description">{project.description}</p>
+                                <a
+                                    href={project.link}
+                                    className="about-button"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => {
+                                        if (index === 1) { 
+                                            e.preventDefault();
+                                            setShowBugImage(true);
+                                        }
+                                    }}
+                                >
+                                    About
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                <div className={`bug-image-popup ${showBugImage ? 'visible' : ''}`}>
+                    <p className="bug-image-caption">The funniest thing I own:</p>
+                    <img src="best_tshirt.jpg" alt="Bug Hunter Mode" />
+                    <button onClick={() => setShowBugImage(false)} className="close-button">✖</button>
+                </div>
+            </div>
+        </section>
+    );
+}
 // const ResumeView = () => (
 
 // );
@@ -317,7 +445,7 @@ export {
     AboutView,
     EducationView,
     ExperienceView,
-    // ProjectsView,
+    ProjectsView,
     // ResumeView,
     // ContactsView,
     // HeaderView,
