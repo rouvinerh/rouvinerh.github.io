@@ -10,7 +10,7 @@ function App() {
         {!showAbout ? (
           <LoadingView onLoadingComplete={() => setShowAbout(true)} />
         ) : (
-          <div className="portfolio-content fade-in">
+          <div className="portfolio">
             <AboutView />
             <EducationView />
             <ExperienceView />

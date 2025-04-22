@@ -293,12 +293,12 @@ const ProjectsView = () => {
     const projectsData = [
         {
             title: '📚 Security Journal',
-            description: 'Writing about web vulnerabilities, security blogs, and just about any of my security-related adventures in a GitBook.',
+            description: 'Writing about web vulnerabilities, security blogs, and just about any of security-related adventures in a GitBook.',
             link: 'https://rouvin.gitbook.io',
         },
         {
             title: '🐛 Bug Bounties',
-            description: 'Hunting and reporting bugs on YesWeHack or other Vulnerability Disclosure Programs whenever I can!',
+            description: 'Hunting and reporting bugs on YesWeHack or VDPs when I am free.',
             link: '#',
         },
         {
@@ -309,7 +309,7 @@ const ProjectsView = () => {
         },
         {
             title: '🖥️ Boot2Root',
-            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds so far.',
+            description: 'Rooted 264 machines on HTB and 99 machines on Proving Grounds and still going!',
             imageSrc: '/images/portfolio_opt.png',
             link: 'https://app.hackthebox.com/profile/814999',
         },
@@ -343,16 +343,29 @@ const ProjectsView = () => {
     };
 
     useEffect(() => {
-        if (showBugImage) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
+        const handleOutsideClick = (event: MouseEvent) => {
+          const popup = document.querySelector('.bug-image-popup.visible');
+          if (popup && !popup.contains(event.target as Node)) {
+            setShowBugImage(false);
+          }
         };
-    }, [showBugImage]);
-
+      
+        if (showBugImage) {
+          document.addEventListener('mousedown', handleOutsideClick);
+          document.body.style.overflow = 'hidden';
+          document.body.classList.add('popup-active');
+        } else {
+          document.removeEventListener('mousedown', handleOutsideClick);
+          document.body.style.overflow = '';
+          document.body.classList.remove('popup-active');
+        }
+      
+        return () => {
+          document.removeEventListener('mousedown', handleOutsideClick);
+          document.body.style.overflow = '';
+          document.body.classList.remove('popup-active'); 
+        };
+      }, [showBugImage]);
     useEffect(() => {
         const animatedElements = document.querySelectorAll('.flip-card');
         const observer = new IntersectionObserver(
@@ -399,12 +412,13 @@ const ProjectsView = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => {
-                                        if (index === 1) { 
-                                            e.preventDefault();
-                                            setShowBugImage(true);
+                                        e.stopPropagation();
+                                        if (index === 1) {
+                                        e.preventDefault();
+                                        setShowBugImage(true);
                                         }
                                     }}
-                                >
+                                    >
                                     About
                                 </a>
                             </div>

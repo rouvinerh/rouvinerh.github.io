@@ -20,7 +20,6 @@ body {
     color: #f2f2f2; 
     margin: 0;
     padding: 20px;
-    
 }
 
 h1 {
@@ -394,7 +393,7 @@ h1 {
     justify-content: center;
     align-items: center;
     transform: scale(0);
-    transition: transform 0.4s;
+    transition: transform 0.8s;
 }
 
 .timeline-item.left .timeline-circle {
@@ -538,14 +537,13 @@ h1 {
 }
 
 .project-title {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.3rem;
 }
 
 .project-description {
     font-size: 1.1rem;
     margin-bottom: 0;
-  }
+}
 
 .about-button {
     padding: 0.5rem 1rem;
@@ -614,6 +612,14 @@ h1 {
 
 .close-button:hover {
     background: #B388FF;
+}
+
+body.popup-active {
+    pointer-events: none; 
+}
+  
+body.popup-active .bug-image-popup {
+    pointer-events: auto; 
 }
 
 
@@ -748,15 +754,18 @@ h1 {
         opacity: 1;
         transform: translateX(0);
     }
-
+    
     .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 
+    .project-description {
+        font-size: 1rem;
+    }
+
     .bug-image-popup img {
-        max-width: 90vw;
+        max-width: 75vw;
         max-height: 70vh;
-        border-radius: 4px;
     }
 
 }

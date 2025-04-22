@@ -139,12 +139,12 @@ const ProjectsView = () => {
     const projectsData = [
         {
             title: '📚 Security Journal',
-            description: 'Writing about web vulnerabilities, security blogs, and just about any of my security-related adventures in a GitBook.',
+            description: 'Writing about web vulnerabilities, security blogs, and just about any of security-related adventures in a GitBook.',
             link: 'https://rouvin.gitbook.io',
         },
         {
             title: '🐛 Bug Bounties',
-            description: 'Hunting and reporting bugs on YesWeHack or other Vulnerability Disclosure Programs whenever I can!',
+            description: 'Hunting and reporting bugs on YesWeHack or VDPs when I am free',
             link: '#',
         },
         {
@@ -155,7 +155,7 @@ const ProjectsView = () => {
         },
         {
             title: '🖥️ Boot2Root',
-            description: 'Hacking on HackTheBox and Proving Grounds Practice for practice sometimes. Rooted 264 machines on HTB and 99 machines on Proving Grounds so far.',
+            description: 'Rooted 264 machines on HTB and 99 machines on Proving Grounds and still going!',
             imageSrc: '/images/portfolio_opt.png',
             link: 'https://app.hackthebox.com/profile/814999',
         },
@@ -184,14 +184,26 @@ const ProjectsView = () => {
         });
     };
     useEffect(() => {
+        const handleOutsideClick = (event) => {
+            const popup = document.querySelector('.bug-image-popup.visible');
+            if (popup && !popup.contains(event.target)) {
+                setShowBugImage(false);
+            }
+        };
         if (showBugImage) {
+            document.addEventListener('mousedown', handleOutsideClick);
             document.body.style.overflow = 'hidden';
+            document.body.classList.add('popup-active');
         }
         else {
+            document.removeEventListener('mousedown', handleOutsideClick);
             document.body.style.overflow = '';
+            document.body.classList.remove('popup-active');
         }
         return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
             document.body.style.overflow = '';
+            document.body.classList.remove('popup-active');
         };
     }, [showBugImage]);
     useEffect(() => {
@@ -209,6 +221,7 @@ const ProjectsView = () => {
         return () => observer.disconnect();
     }, []);
     return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./projects --list", _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "projects-grid", children: [projectsData.map((project, index) => (_jsx("div", { className: `flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`, onClick: () => handleFlip(index), children: _jsxs("div", { className: "flip-card-inner", children: [_jsx("div", { className: "flip-card-front", children: _jsx("h3", { className: "project-title", children: project.title }) }), _jsxs("div", { className: "flip-card-back", children: [_jsx("p", { className: "project-description", children: project.description }), _jsx("a", { href: project.link, className: "about-button", target: "_blank", rel: "noopener noreferrer", onClick: (e) => {
+                                                e.stopPropagation();
                                                 if (index === 1) {
                                                     e.preventDefault();
                                                     setShowBugImage(true);
