@@ -144,7 +144,7 @@ const ProjectsView = () => {
         },
         {
             title: '🐛 Bug Bounties',
-            description: 'Hunting and reporting bugs on YesWeHack or VDPs when I am free',
+            description: 'Hunting and reporting bugs on YesWeHack or VDPs when I am free.',
             link: '#',
         },
         {

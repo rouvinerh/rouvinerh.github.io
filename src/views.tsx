@@ -68,8 +68,9 @@ function AboutView() {
     const aboutPhrases = [
         "a cybersecurity engineer.",
         "a CTF player.",
-        "an Offensive Security guy.",
-        "an InfoSec student."
+        "into Offensive Security.",
+        "an InfoSec student.",
+        "hacking for good."
     ];
 
     return (
