@@ -12,9 +12,10 @@ function App() {
         ) : (
           <div className="portfolio">
             <AboutView />
-            <EducationView />
             <ExperienceView />
             <ProjectsView />
+            <EducationView />
+
           </div>
         )}
       </div>

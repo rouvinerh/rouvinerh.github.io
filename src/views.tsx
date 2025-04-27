@@ -95,6 +95,23 @@ function AboutView() {
                     <SiGitbook className="social-icon" />
                 </a>
             </div>
+            <div className="cert-logos">
+                    <a href="https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955" className="social-tooltip" data-tooltip="OffSec Exploit Developer" target="_blank" rel="noopener noreferrer">
+                        <img src="osed-logo.svg" alt="OSED" className="cert-logo" />
+                    </a>
+                    <a href="https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256" className="social-tooltip" data-tooltip="OffSec Web Expert" target="_blank" rel="noopener noreferrer">
+                        <img src="oswe-logo.svg" alt="OSWE" className="cert-logo" />
+                    </a>
+                    <a href="https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82" className="social-tooltip" data-tooltip="Certified Red Team Expert" target="_blank" rel="noopener noreferrer">
+                        <img src="crte-logo.webp" alt="CRTE" className="cert-logo" />
+                    </a>
+                    <a href="https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com" className="social-tooltip" data-tooltip="Certified Red Team Operator" target="_blank" rel="noopener noreferrer">
+                        <img src="crto-logo.png" alt="CRTO" className="cert-logo" />
+                    </a>
+                    <a href="https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2" className="social-tooltip" data-tooltip="OffSec Certified Professional" target="_blank" rel="noopener noreferrer">
+                        <img src="oscp-logo.svg" alt="OSCP" className="cert-logo" />
+                    </a>
+            </div>
 
         </section>
     );
@@ -132,36 +149,16 @@ const EducationView = () => {
         </div>
 
         <div className="education-split">
-            <div className="education-left">
+            <div className="education-university">
                 <span className="education-title">National University of Singapore</span>
-                <div className="college-details">
+                <div className="university-details">
                     <span className="degree">Bachelor of Computing in Information Security</span>
-                    <span className="college-description">Expected Graduation: May 2026</span>
-                    <span className="college-grade">Current GPA: 4.71 / 5.00</span>
+                    <span className="university-description">Expected Graduation: May 2026</span>
+                    <span className="university-grade">Current GPA: 4.71 / 5.00</span>
                 </div>
                 <a href="https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678" className="social-tooltip" data-tooltip="Dean's List AY23/24 Semester 2" target="_blank" rel="noopener noreferrer">
                         <img src="dean-list-logo.png" alt="DeanList" className="cert-logo" />
                     </a>
-            </div>
-            <div className="education-right">
-                <span className="education-title">Certifications</span>
-                <div className="cert-logos">
-                    <a href="https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955" className="social-tooltip" data-tooltip="OffSec Exploit Developer" target="_blank" rel="noopener noreferrer">
-                        <img src="osed-logo.svg" alt="OSED" className="cert-logo" />
-                    </a>
-                    <a href="https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256" className="social-tooltip" data-tooltip="OffSec Web Expert" target="_blank" rel="noopener noreferrer">
-                        <img src="oswe-logo.svg" alt="OSWE" className="cert-logo" />
-                    </a>
-                    <a href="https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82" className="social-tooltip" data-tooltip="Certified Red Team Expert" target="_blank" rel="noopener noreferrer">
-                        <img src="crte-logo.webp" alt="CRTE" className="cert-logo" />
-                    </a>
-                    <a href="https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com" className="social-tooltip" data-tooltip="Certified Red Team Operator" target="_blank" rel="noopener noreferrer">
-                        <img src="crto-logo.png" alt="CRTO" className="cert-logo" />
-                    </a>
-                    <a href="https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2" className="social-tooltip" data-tooltip="OffSec Certified Professional" target="_blank" rel="noopener noreferrer">
-                        <img src="oscp-logo.svg" alt="OSCP" className="cert-logo" />
-                    </a>
-                </div>
             </div>
         </div>
     </section>
