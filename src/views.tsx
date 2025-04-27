@@ -81,8 +81,8 @@ function AboutView() {
             </p>
 
             <p id="about-description" className="terminal-box">
-                whoami<span className={'blinking-cursor'}></span><br />
-                Hello, I'm Rouvin, a cybersecurity student from Singapore specialising in offensive security, and I love to break things.
+                whoami --certs<span className={'blinking-cursor'}></span><br />
+                Hello, I'm Rouvin, an InfoSec student from the National University of Singapore specialising in offensive security.
             </p>
             <div className="social-icons-container">
                 <a href="https://linkedin.com/in/rouvinerh" className="social-tooltip" data-tooltip="LinkedIn">
@@ -145,7 +145,7 @@ const EducationView = () => {
         className={`education-view ${isVisible ? 'visible' : ''}`}
     >
         <div className="terminal-box">
-            ./education --uni --certs<span className={'blinking-cursor'}></span>
+            ./education --uni<span className={'blinking-cursor'}></span>
         </div>
 
         <div className="education-split">
