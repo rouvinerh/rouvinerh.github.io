@@ -181,13 +181,12 @@ h1 {
     font-size: 1rem;
     white-space: nowrap;
     opacity: 0;
-    pointer-events: none;
+    bottom: -25px;
     transition: all 0.3s ease;
 }
   
 .social-tooltip:hover::after {
     opacity: 1;
-    bottom: -30px;
 }
 
 .social-icon:hover {
@@ -657,11 +656,11 @@ body.popup-active .bug-image-popup {
 
     .social-tooltip::after {
         font-size: 0.9rem;
+        bottom: -15px;
     }
 
     .social-tooltip:hover::after {
         opacity: 1;
-        bottom: -15px;
     }
 
     .social-icon {
