@@ -1,4 +1,3 @@
-// Loading Animation Data
 export const LOADING_COMMAND = '$ ./load-portfolio';
 export const LOADING_OUTPUT_LINES = [
     '[+] Loading education...',
@@ -16,7 +15,6 @@ export const ABOUT_PHRASES = [
     "hacking for good."
 ];
 export const ABOUT_DESCRIPTION = "Hello, I'm Rouvin, an InfoSec student from the National University of Singapore specialising in offensive security.";
-// Social Links Data
 export const SOCIAL_LINKS = [
     {
         href: "https://linkedin.com/in/rouvinerh",
@@ -34,7 +32,6 @@ export const SOCIAL_LINKS = [
         iconType: "gitbook"
     }
 ];
-// Certifications Data
 export const CERTIFICATIONS = [
     {
         href: "https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955",
@@ -98,7 +95,7 @@ export const EXPERIENCE_DATA = [
         role: 'Cyber Instructor',
         company: 'DART',
         period: 'Mar 2024 — Present',
-        description: 'Taught cybersecurity to students as part of Cyber Youth programme.',
+        description: 'Teaching cybersecurity to students as part of Cyber Youth programme.',
         logoSrc: 'dart-logo.jpg'
     },
     {
@@ -158,7 +155,7 @@ export const TERMINAL_COMMANDS = {
     education: "./education --uni",
     experience: "./experiences --all",
     projects: "./projects --hover",
-    resume: "./resume --download-view"
+    resume: "./resume "
 };
 export const ANIMATION_CONFIG = {
     typingSpeed: 70,

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
 import { FaDownload, FaTimes, FaEye } from 'react-icons/fa';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { SocialIconsContainer,  CertificationsGrid,  TimelineItem,  ProjectCard,  TerminalBox,  BugImagePopup, CertificationBadge } from './components';
+import { SocialIconsContainer,  CertificationsGrid,  TimelineItem ,  TerminalBox,  BugImagePopup, CertificationBadge } from './components';
 import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG } from './constants';
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
@@ -196,6 +196,11 @@ const ProjectsView = () => {
     const [terminalVisible, setTerminalVisible] = useState(false);
     const [flippedStates, setFlippedStates] = useState<boolean[]>(Array(PROJECTS_DATA.length).fill(false));
     const [showBugImage, setShowBugImage] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+    useEffect(() => {
+        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    }, []);
 
     useEffect(() => {
         const terminalObserver = new IntersectionObserver(([entry]) => {
@@ -280,15 +285,44 @@ const ProjectsView = () => {
 
             <div className="projects-grid">
                 {PROJECTS_DATA.map((project, index) => (
-                    <ProjectCard
+                    <div
                         key={index}
-                        {...project}
-                        index={index}
-                        isVisible={visibleItems.includes(index)}
-                        isFlipped={flippedStates[index]}
-                        onFlip={() => handleFlip(index)}
-                        onSpecialClick={project.isSpecial ? () => setShowBugImage(true) : undefined}
-                    />
+                        className={`flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`}
+                        onClick={() => handleFlip(index)}
+                        onMouseEnter={!isTouchDevice ? () => handleFlip(index) : undefined}
+                        onMouseLeave={!isTouchDevice ? () => handleFlip(index) : undefined}
+                        data-index={index}
+                    >
+                        <div className="flip-card-inner">
+                            <div className="flip-card-front">
+                                <h3 className="project-title">{project.title}</h3>
+                            </div>
+                            <div className="flip-card-back">
+                                <div
+                                    className="card-image-banner"
+                                    style={{ backgroundImage: `url(${project.imageSrc})` }}
+                                />
+                                <div className="card-content-area">
+                                    <p className="project-description">{project.description}</p>
+                                    <a
+                                        href={project.link}
+                                        className="about-button"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            if (project.isSpecial) {
+                                                e.preventDefault();
+                                                setShowBugImage(true);
+                                            }
+                                        }}
+                                    >
+                                        About
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 ))}
             </div>
 
@@ -364,7 +398,7 @@ const ResumeView = () => {
     return (
         <section id="resume" className="resume-section">
             <TerminalBox isVisible={terminalVisible}>
-                {TERMINAL_COMMANDS.resume}<span className="blinking-cursor">|</span>
+                {TERMINAL_COMMANDS.resume}<span className="blinking-cursor"></span>
             </TerminalBox>
 
             <div className="resume-buttons">
@@ -379,7 +413,7 @@ const ResumeView = () => {
                     onClick={handleDownload}
                     className="terminal-btn download-btn"
                 >
-                    <FaDownload /> Download PDF
+                    <FaDownload /> Download
                 </button>
             </div>
 
@@ -399,4 +433,4 @@ const ResumeView = () => {
     );
 };
 
-export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView, };
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView };
