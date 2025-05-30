@@ -63,31 +63,31 @@ const EducationView = () => {
 const ExperienceView = () => {
     const experienceData = [
         {
-            role: 'Bug Bounty Intern',
+            role: 'Offensive Security Engineer Intern',
             company: 'PayPal',
-            period: 'May 2025 — Oct 2025',
-            description: 'Summer Intern with Bug Bounty team.',
+            period: 'May 2025 — Present',
+            description: "Triaging bug reports and pentesting new features under PayPal's Offensive Security team.",
             logoSrc: 'paypal-logo.png',
         },
         {
-            role: 'Sentinel Instructor',
+            role: 'Cyber Instructor',
             company: 'DART',
             period: 'Mar 2024 — Present',
-            description: 'Taught cybersecurity to students as part of Sentinel programme by MINDEF.',
+            description: 'Taught cybersecurity to students as part of Cyber Youth programme.',
             logoSrc: 'dart-logo.jpg'
         },
         {
             role: 'Security Engineer Intern',
             company: 'Ascenda Loyalty',
             period: 'May 2024 - Aug 2024',
-            description: 'White-box web application pentesting, identified 20+ security flaws, remediated them with developers, and DAST tool development.',
+            description: 'Carried out white-box web application pentesting, identifying 20+ security flaws, along with custom DAST tool development.',
             logoSrc: 'ascenda-logo.png',
         },
         {
             role: 'Attack Simulation Intern',
             company: 'Cyber Security Agency of Singapore',
             period: 'May 2023 - Aug 2023',
-            description: 'Created Caldera adversary profiles and built a simulated Active Directory network using Vagrant for running exploits.',
+            description: 'Created Caldera adversary profiles and built an Active Directory environment using Vagrant for running profiles.',
             logoSrc: 'csa-logo.jpg',
         },
     ];
@@ -140,24 +140,26 @@ const ProjectsView = () => {
     const projectsData = [
         {
             title: '📚 Security Journal',
-            description: 'Writing about web vulnerabilities, security blogs, and just about any of security-related adventures in a GitBook.',
+            description: 'Writing security blogs, and all my security-related adventures in a GitBook.',
+            imageSrc: 'gitbook.png',
             link: 'https://rouvin.gitbook.io',
         },
         {
             title: '🐛 Bug Bounties',
-            description: 'Hunting and reporting bugs on YesWeHack or VDPs when I am free.',
+            description: 'Hunting and reporting bugs on bug bounties VDPs when I am free (and bored).',
+            imageSrc: 'bugbounty.png',
             link: '#',
         },
         {
             title: '💀 Malware Development',
-            description: 'Learning defence evasion techniques and various methods of making calc.exe run with Maldev Academy.',
-            imageSrc: '/images/portfolio_opt.png',
+            description: 'Learning evasion techniques and various methods of making calc.exe run with Maldev Academy.',
+            imageSrc: 'malwaredev.png',
             link: 'https://github.com/rouvinerh/Malware-Tech',
         },
         {
             title: '🖥️ Boot2Root',
             description: 'Rooted 264 machines on HTB and 99 machines on Proving Grounds and still going!',
-            imageSrc: '/images/portfolio_opt.png',
+            imageSrc: 'boot2root.png',
             link: 'https://app.hackthebox.com/profile/814999',
         },
     ];
@@ -175,8 +177,32 @@ const ProjectsView = () => {
         const terminalElement = document.querySelector('#projects .terminal-box');
         if (terminalElement)
             terminalObserver.observe(terminalElement);
-        return () => terminalObserver.disconnect();
+        return () => {
+            if (terminalElement)
+                terminalObserver.unobserve(terminalElement);
+        };
     }, []);
+    useEffect(() => {
+        const animatedElements = document.querySelectorAll('.projects-grid .flip-card');
+        if (animatedElements.length === 0)
+            return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const cardElement = entry.target;
+                    const index = parseInt(cardElement.dataset.index || "-1", 10);
+                    if (index !== -1) {
+                        setVisibleItems((prev) => [...new Set([...prev, index])]);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        animatedElements.forEach((el) => observer.observe(el));
+        return () => {
+            animatedElements.forEach((el) => observer.unobserve(el));
+        };
+    }, [projectsData.length]);
     const handleFlip = (index) => {
         setFlippedStates(prev => {
             const newState = [...prev];
@@ -221,13 +247,13 @@ const ProjectsView = () => {
         animatedElements.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
-    return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./projects --list", _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "projects-grid", children: [projectsData.map((project, index) => (_jsx("div", { className: `flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`, onClick: () => handleFlip(index), children: _jsxs("div", { className: "flip-card-inner", children: [_jsx("div", { className: "flip-card-front", children: _jsx("h3", { className: "project-title", children: project.title }) }), _jsxs("div", { className: "flip-card-back", children: [_jsx("p", { className: "project-description", children: project.description }), _jsx("a", { href: project.link, className: "about-button", target: "_blank", rel: "noopener noreferrer", onClick: (e) => {
-                                                e.stopPropagation();
-                                                if (index === 1) {
-                                                    e.preventDefault();
-                                                    setShowBugImage(true);
-                                                }
-                                            }, children: "About" })] })] }) }, index))), _jsxs("div", { className: `bug-image-popup ${showBugImage ? 'visible' : ''}`, children: [_jsx("p", { className: "bug-image-caption", children: "The funniest thing I own:" }), _jsx("img", { src: "best_tshirt.jpg", alt: "Bug Hunter Mode" }), _jsx("button", { onClick: () => setShowBugImage(false), className: "close-button", children: "\u2716" })] })] })] }));
+    return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./projects --hover", _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "projects-grid", children: [projectsData.map((project, index) => (_jsx("div", { className: `flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`, onMouseEnter: () => handleFlip(index), onMouseLeave: () => handleFlip(index), children: _jsxs("div", { className: "flip-card-inner", children: [_jsx("div", { className: "flip-card-front", children: _jsx("h3", { className: "project-title", children: project.title }) }), _jsxs("div", { className: "flip-card-back", children: [_jsx("div", { className: "card-image-banner", style: { backgroundImage: `url(${project.imageSrc})` } }), _jsxs("div", { className: "card-content-area", children: [_jsx("p", { className: "project-description", children: project.description }), _jsx("a", { href: project.link, className: "about-button", target: "_blank", rel: "noopener noreferrer", onClick: (e) => {
+                                                        e.stopPropagation();
+                                                        if (index === 1) {
+                                                            e.preventDefault();
+                                                            setShowBugImage(true);
+                                                        }
+                                                    }, children: "About" })] })] })] }) }, index))), _jsxs("div", { className: `bug-image-popup ${showBugImage ? 'visible' : ''}`, children: [_jsx("p", { className: "bug-image-caption", children: "The funniest thing I own:" }), _jsx("img", { src: "best_tshirt.jpg", alt: "Bug Hunter Mode" }), _jsx("button", { onClick: () => setShowBugImage(false), className: "close-button", children: "\u2716" })] })] })] }));
 };
 // const ResumeView = () => (
 // );
