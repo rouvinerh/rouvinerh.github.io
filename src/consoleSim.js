@@ -41,7 +41,7 @@ const ConsoleTyping = ({ lines, typingSpeed = 100, initialDelay = 1500, onTyping
     }, [currentLineContent, currentIndex, lines, initialDelay]);
     return (_jsx("div", { className: "terminal-output", children: typedLines.map((line, index) => (_jsxs("p", { className: 'command-line', children: [line, _jsx("span", { className: 'blinking-cursor' })] }, index))) }));
 };
-const ConsoleOutput = ({ lines, initialDelay = 500, nextLineDelay = 500, onComplete, outputColor = '#00ff00', }) => {
+const ConsoleOutput = ({ lines, initialDelay = 500, nextLineDelay = 500, onComplete, }) => {
     const [printedLines, setPrintedLines] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     useEffect(() => {

@@ -75,7 +75,6 @@ const ConsoleOutput: React.FC<ConsoleOutputProps> = ({
     initialDelay = 500,
     nextLineDelay = 500,
     onComplete,
-    outputColor = '#00ff00',
 }) => {
     const [printedLines, setPrintedLines] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);

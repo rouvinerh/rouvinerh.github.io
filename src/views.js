@@ -1,49 +1,34 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
-import { FaLinkedin, FaGithub, FaDownload, FaTimes, FaEye } from 'react-icons/fa';
+import { FaDownload, FaTimes, FaEye } from 'react-icons/fa';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { SiGitbook } from "react-icons/si";
+import { SocialIconsContainer, CertificationsGrid, TimelineItem, ProjectCard, TerminalBox, BugImagePopup, CertificationBadge } from './components';
+import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG } from './constants';
 import "react-pdf/dist/esm/Page/TextLayer.css";
 function LoadingView({ onLoadingComplete }) {
-    const commandLine = '$ ./load-portfolio';
-    const outputLines = [
-        '[+] Loading education...',
-        '[+] Loading certifications...',
-        '[+] Loading work experience...',
-        '[+] Loading projects...',
-        '[+] Loading resume...',
-        '[+] Website loaded!'
-    ];
     const [skipButtonVisible, setSkipButtonVisible] = useState(false);
     const [showOutput, setShowOutput] = useState(false);
     const [outputComplete, setOutputComplete] = useState(false);
     useEffect(() => {
         setTimeout(() => {
             setSkipButtonVisible(true);
-        }, 50);
+        }, ANIMATION_CONFIG.skipButtonDelay);
     }, []);
     const skipAnimation = () => {
         setShowOutput(true);
         setOutputComplete(true);
         onLoadingComplete();
     };
-    return (_jsxs("div", { className: "console-container", children: [_jsx("div", { className: "command-line", children: _jsx(ConsoleTyping, { lines: [commandLine], onTypingComplete: () => setTimeout(() => setShowOutput(true), 500), typingSpeed: 50 }) }), showOutput && !outputComplete && (_jsx(ConsoleOutput, { lines: outputLines, onComplete: () => {
+    return (_jsxs("div", { className: "console-container", children: [_jsx("div", { className: "command-line", children: _jsx(ConsoleTyping, { lines: [LOADING_COMMAND], onTypingComplete: () => setTimeout(() => setShowOutput(true), 500), typingSpeed: ANIMATION_CONFIG.loadingTypingSpeed }) }), showOutput && !outputComplete && (_jsx(ConsoleOutput, { lines: LOADING_OUTPUT_LINES, onComplete: () => {
                     setTimeout(() => {
                         setOutputComplete(true);
                         onLoadingComplete();
-                    }, 1300);
-                }, nextLineDelay: 500 })), _jsxs("button", { className: `skip-button ${skipButtonVisible ? 'visible' : ''}`, onClick: skipAnimation, children: ["./skip-animation", _jsx("span", { className: 'blinking-cursor' })] })] }));
+                    }, ANIMATION_CONFIG.loadingCompleteDelay);
+                }, nextLineDelay: ANIMATION_CONFIG.nextLineDelay })), _jsxs("button", { className: `skip-button ${skipButtonVisible ? 'visible' : ''}`, onClick: skipAnimation, children: ["./skip-animation", _jsx("span", { className: 'blinking-cursor' })] })] }));
 }
 function AboutView() {
-    const aboutPhrases = [
-        "a cybersecurity engineer.",
-        "a CTF player.",
-        "into Offensive Security.",
-        "an InfoSec student.",
-        "hacking for good."
-    ];
-    return (_jsxs("section", { id: "about", className: "about-view", children: [_jsx("h1", { className: "section-heading", children: "Rouvin Erh" }), _jsxs("p", { className: "about-subheading", children: ["I'm ", _jsx("span", { className: "typed-about-text", children: _jsx(ConsoleTypingWithBackspace, { texts: aboutPhrases, typingSpeed: 70, backspaceSpeed: 30, waitDuration: 1000 }) })] }), _jsxs("p", { id: "about-description", className: "terminal-box", children: ["whoami --certs --links", _jsx("span", { className: 'blinking-cursor' }), _jsx("br", {}), "Hello, I'm Rouvin, an InfoSec student from the National University of Singapore specialising in offensive security."] }), _jsxs("div", { className: "social-icons-container", children: [_jsx("a", { href: "https://linkedin.com/in/rouvinerh", className: "social-tooltip", "data-tooltip": "LinkedIn", children: _jsx(FaLinkedin, { className: "social-icon" }) }), _jsx("a", { href: "https://github.com/rouvinerh", className: "social-tooltip", "data-tooltip": "GitHub", children: _jsx(FaGithub, { className: "social-icon" }) }), _jsx("a", { href: "https://rouvin.gitbook.io", className: "social-tooltip", "data-tooltip": "Blog", children: _jsx(SiGitbook, { className: "social-icon" }) })] }), _jsxs("div", { className: "cert-logos", children: [_jsx("a", { href: "https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955", className: "social-tooltip", "data-tooltip": "OffSec Exploit Developer", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "osed-logo.svg", alt: "OSED", className: "cert-logo" }) }), _jsx("a", { href: "https://credentials.offsec.com/e0767f9c-9826-4eac-806b-d63258d28256", className: "social-tooltip", "data-tooltip": "OffSec Web Expert", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oswe-logo.svg", alt: "OSWE", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82", className: "social-tooltip", "data-tooltip": "Certified Red Team Expert", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crte-logo.webp", alt: "CRTE", className: "cert-logo" }) }), _jsx("a", { href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com", className: "social-tooltip", "data-tooltip": "Certified Red Team Operator", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "crto-logo.png", alt: "CRTO", className: "cert-logo" }) }), _jsx("a", { href: "https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2", className: "social-tooltip", "data-tooltip": "OffSec Certified Professional", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "oscp-logo.svg", alt: "OSCP", className: "cert-logo" }) })] })] }));
+    return (_jsxs("section", { id: "about", className: "about-view", children: [_jsx("h1", { className: "section-heading", children: "Rouvin Erh" }), _jsxs("p", { className: "about-subheading", children: ["I'm ", _jsx("span", { className: "typed-about-text", children: _jsx(ConsoleTypingWithBackspace, { texts: ABOUT_PHRASES, typingSpeed: ANIMATION_CONFIG.typingSpeed, backspaceSpeed: ANIMATION_CONFIG.backspaceSpeed, waitDuration: ANIMATION_CONFIG.waitDuration }) })] }), _jsxs(TerminalBox, { children: [TERMINAL_COMMANDS.about, _jsx("span", { className: 'blinking-cursor' }), _jsx("br", {}), ABOUT_DESCRIPTION] }), _jsx(SocialIconsContainer, {}), _jsx(CertificationsGrid, {})] }));
 }
 const EducationView = () => {
     const sectionRef = useRef(null);
@@ -60,46 +45,9 @@ const EducationView = () => {
         }
         return () => observer.disconnect();
     }, []);
-    return (_jsxs("section", { id: "education", ref: sectionRef, className: `education-view ${isVisible ? 'visible' : ''}`, children: [_jsxs("div", { className: "terminal-box", children: ["./education --uni", _jsx("span", { className: 'blinking-cursor' })] }), _jsx("div", { className: "education-split", children: _jsxs("div", { className: "education-university", children: [_jsx("span", { className: "education-title", children: "National University of Singapore" }), _jsxs("div", { className: "university-details", children: [_jsx("span", { className: "degree", children: "Bachelor of Computing in Information Security" }), _jsx("span", { className: "university-description", children: "Expected Graduation: May 2026" }), _jsx("span", { className: "university-grade", children: "Current GPA: 4.71 / 5.00" })] }), _jsx("a", { href: "https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678", className: "social-tooltip", "data-tooltip": "Dean's List AY23/24 Semester 2", target: "_blank", rel: "noopener noreferrer", children: _jsx("img", { src: "dean-list-logo.png", alt: "DeanList", className: "cert-logo" }) })] }) })] }));
+    return (_jsxs("section", { id: "education", ref: sectionRef, className: `education-view ${isVisible ? 'visible' : ''}`, children: [_jsxs(TerminalBox, { children: [TERMINAL_COMMANDS.education, _jsx("span", { className: 'blinking-cursor' })] }), _jsx("div", { className: "education-split", children: _jsxs("div", { className: "education-university", children: [_jsx("span", { className: "education-title", children: EDUCATION_DATA.university }), _jsxs("div", { className: "university-details", children: [_jsx("span", { className: "degree", children: EDUCATION_DATA.degree }), _jsxs("span", { className: "university-description", children: ["Expected Graduation: ", EDUCATION_DATA.expectedGraduation] }), _jsxs("span", { className: "university-grade", children: ["Current GPA: ", EDUCATION_DATA.gpa] })] }), _jsx(CertificationBadge, Object.assign({}, EDUCATION_DATA.deansList))] }) })] }));
 };
 const ExperienceView = () => {
-    const experienceData = [
-        {
-            role: 'Offensive Security Engineer Intern',
-            company: 'PayPal',
-            period: 'May 2025 — Present',
-            description: "Triaging bug reports and pentesting under PayPal's Offensive Security team.",
-            logoSrc: 'paypal-logo.png',
-        },
-        {
-            role: 'Security Researcher',
-            company: 'Synack Red Team',
-            period: 'May 2025 — Present',
-            description: "Pentesting web and host targets on a freelance basis.",
-            logoSrc: 'synack.webp',
-        },
-        {
-            role: 'Cyber Instructor',
-            company: 'DART',
-            period: 'Mar 2024 — Present',
-            description: 'Taught cybersecurity to students as part of Cyber Youth programme.',
-            logoSrc: 'dart-logo.jpg'
-        },
-        {
-            role: 'Security Engineer Intern',
-            company: 'Ascenda Loyalty',
-            period: 'May 2024 - Aug 2024',
-            description: 'Carried out white-box web application pentesting, identifying 20+ security flaws, along with custom DAST tool development.',
-            logoSrc: 'ascenda-logo.png',
-        },
-        {
-            role: 'Attack Simulation Intern',
-            company: 'Cyber Security Agency of Singapore',
-            period: 'May 2023 - Aug 2023',
-            description: 'Created Caldera adversary profiles and built an Active Directory environment using Vagrant for running profiles.',
-            logoSrc: 'csa-logo.jpg',
-        },
-    ];
     const [visibleItems, setVisibleItems] = useState([]);
     const [terminalVisible, setTerminalVisible] = useState(false);
     useEffect(() => {
@@ -129,52 +77,12 @@ const ExperienceView = () => {
         items.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
     }, []);
-    useEffect(() => {
-        const animatedElements = document.querySelectorAll('.timeline-item');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const index = Array.from(animatedElements).indexOf(entry.target);
-                    setVisibleItems((prev) => [...new Set([...prev, index])]);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        animatedElements.forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
-    return (_jsxs("section", { id: "experience", className: "experience-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./experiences --all", _jsx("span", { className: "blinking-cursor" })] }), _jsx("div", { className: "timeline", children: experienceData.map((exp, index) => (_jsxs("div", { className: `timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${visibleItems.includes(index) ? 'visible' : ''}`, children: [_jsx("div", { className: "timeline-circle", children: exp.logoSrc && _jsx("img", { src: exp.logoSrc, alt: `${exp.company} logo` }) }), _jsxs("div", { className: "timeline-content", children: [_jsx("span", { className: "timeline-role", children: exp.role }), _jsx("span", { className: "timeline-company", children: exp.company }), _jsx("span", { className: "timeline-date", children: exp.period }), _jsx("span", { className: "timeline-description", children: exp.description })] })] }, index))) })] }));
+    return (_jsxs("section", { id: "experience", className: "experience-section", children: [_jsxs(TerminalBox, { isVisible: terminalVisible, children: [TERMINAL_COMMANDS.experience, _jsx("span", { className: "blinking-cursor" })] }), _jsx("div", { className: "timeline", children: EXPERIENCE_DATA.map((exp, index) => (_jsx(TimelineItem, Object.assign({}, exp, { index: index, isVisible: visibleItems.includes(index) }), index))) })] }));
 };
 const ProjectsView = () => {
-    const projectsData = [
-        {
-            title: '📚 Security Journal',
-            description: 'Writing security blogs, and all my security-related adventures in a GitBook.',
-            imageSrc: 'gitbook.png',
-            link: 'https://rouvin.gitbook.io',
-        },
-        {
-            title: '🐛 Bug Bounties',
-            description: 'Hunting and reporting bugs on bug bounties VDPs when I am free (and bored).',
-            imageSrc: 'xss.png',
-            link: '#',
-        },
-        {
-            title: '💀 Malware Development',
-            description: 'Learning evasion techniques and various methods of making calc.exe run with Maldev Academy.',
-            imageSrc: 'malwaredev.png',
-            link: 'https://github.com/rouvinerh/Malware-Tech',
-        },
-        {
-            title: '🖥️ Boot2Root',
-            description: 'Rooted 264 machines on HTB and 99 machines on Proving Grounds and still going!',
-            imageSrc: 'boot2root.png',
-            link: 'https://app.hackthebox.com/profile/814999',
-        },
-    ];
     const [visibleItems, setVisibleItems] = useState([]);
     const [terminalVisible, setTerminalVisible] = useState(false);
-    const [flippedStates, setFlippedStates] = useState(Array(projectsData.length).fill(false));
+    const [flippedStates, setFlippedStates] = useState(Array(PROJECTS_DATA.length).fill(false));
     const [showBugImage, setShowBugImage] = useState(false);
     useEffect(() => {
         const terminalObserver = new IntersectionObserver(([entry]) => {
@@ -211,7 +119,7 @@ const ProjectsView = () => {
         return () => {
             animatedElements.forEach((el) => observer.unobserve(el));
         };
-    }, [projectsData.length]);
+    }, [PROJECTS_DATA.length]);
     const handleFlip = (index) => {
         setFlippedStates(prev => {
             const newState = [...prev];
@@ -242,41 +150,16 @@ const ProjectsView = () => {
             document.body.classList.remove('popup-active');
         };
     }, [showBugImage]);
-    useEffect(() => {
-        const animatedElements = document.querySelectorAll('.flip-card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const index = Array.from(animatedElements).indexOf(entry.target);
-                    setVisibleItems((prev) => [...new Set([...prev, index])]);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        animatedElements.forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
-    return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./projects --hover", _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "projects-grid", children: [projectsData.map((project, index) => (_jsx("div", { className: `flip-card ${flippedStates[index] ? 'flipped' : ''} ${visibleItems.includes(index) ? 'visible' : ''}`, onMouseEnter: () => handleFlip(index), onMouseLeave: () => handleFlip(index), children: _jsxs("div", { className: "flip-card-inner", children: [_jsx("div", { className: "flip-card-front", children: _jsx("h3", { className: "project-title", children: project.title }) }), _jsxs("div", { className: "flip-card-back", children: [_jsx("div", { className: "card-image-banner", style: { backgroundImage: `url(${project.imageSrc})` } }), _jsxs("div", { className: "card-content-area", children: [_jsx("p", { className: "project-description", children: project.description }), _jsx("a", { href: project.link, className: "about-button", target: "_blank", rel: "noopener noreferrer", onClick: (e) => {
-                                                        e.stopPropagation();
-                                                        if (index === 1) {
-                                                            e.preventDefault();
-                                                            setShowBugImage(true);
-                                                        }
-                                                    }, children: "About" })] })] })] }) }, index))), _jsxs("div", { className: `bug-image-popup ${showBugImage ? 'visible' : ''}`, children: [_jsx("p", { className: "bug-image-caption", children: "The funniest thing I own:" }), _jsx("img", { src: "best_tshirt.jpg", alt: "Bug Hunter Mode" }), _jsx("button", { onClick: () => setShowBugImage(false), className: "close-button", children: "\u2716" })] })] })] }));
+    return (_jsxs("section", { id: "projects", className: "projects-section", children: [_jsxs(TerminalBox, { isVisible: terminalVisible, children: [TERMINAL_COMMANDS.projects, _jsx("span", { className: "blinking-cursor" })] }), _jsx("div", { className: "projects-grid", children: PROJECTS_DATA.map((project, index) => (_jsx(ProjectCard, Object.assign({}, project, { index: index, isVisible: visibleItems.includes(index), isFlipped: flippedStates[index], onFlip: () => handleFlip(index), onSpecialClick: project.isSpecial ? () => setShowBugImage(true) : undefined }), index))) }), _jsx(BugImagePopup, { isVisible: showBugImage, onClose: () => setShowBugImage(false) })] }));
 };
 const ResumeView = () => {
     const [terminalVisible, setTerminalVisible] = useState(false);
     const [showPDF, setShowPDF] = useState(false);
-    const [pdfError, setPdfError] = useState(null);
-    const [pdfLoading, setPdfLoading] = useState(false);
-    const pdfFile = '/RouvinErh_CV.pdf'; // Added leading slash for public folder
     const pdfWrapperRef = useRef(null);
-    const [width, setWidth] = useState(793);
-    // Configure PDF.js worker
+    const [width, setWidth] = useState(RESUME_DATA.defaultWidth);
     useEffect(() => {
         pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.mjs`;
     }, []);
-    // Terminal animation observer
     useEffect(() => {
         const terminalObserver = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
@@ -290,15 +173,14 @@ const ResumeView = () => {
         }
         return () => terminalObserver.disconnect();
     }, []);
-    // Responsive width observer
     useEffect(() => {
         if (!pdfWrapperRef.current)
             return;
         const resizeObserver = new ResizeObserver((entries) => {
             for (const entry of entries) {
                 const containerWidth = entry.target.clientWidth;
-                const newWidth = Math.min(containerWidth * 0.95, 793); // Max width of 793
-                if (Math.abs(newWidth - width) > 5) { // Only update if significant change
+                const newWidth = Math.min(containerWidth * 0.95, RESUME_DATA.defaultWidth);
+                if (Math.abs(newWidth - width) > 5) {
                     setWidth(newWidth);
                 }
             }
@@ -310,39 +192,13 @@ const ResumeView = () => {
     }, [width]);
     const handleDownload = () => {
         const link = document.createElement('a');
-        link.href = pdfFile;
-        link.download = 'RouvinErh_CV.pdf';
-        link.target = '_blank'; // Open in new tab as fallback
+        link.href = RESUME_DATA.pdfFile;
+        link.download = RESUME_DATA.downloadFilename;
+        link.target = '_blank';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
-    const onDocumentLoadSuccess = () => {
-        setPdfLoading(false);
-        setPdfError(null);
-    };
-    const onDocumentLoadError = (error) => {
-        setPdfLoading(false);
-        setPdfError('Failed to load PDF. Please try downloading instead.');
-        console.error('PDF loading error:', error);
-    };
-    const onDocumentLoadStart = () => {
-        setPdfLoading(true);
-        setPdfError(null);
-    };
-    return (_jsxs("section", { id: "resume", className: "resume-section", children: [_jsxs("div", { className: `terminal-box ${terminalVisible ? 'visible' : ''}`, children: ["./resume --download-view", _jsx("span", { className: "blinking-cursor", children: "|" })] }), _jsxs("div", { className: "resume-buttons", children: [_jsx("button", { onClick: () => setShowPDF(!showPDF), className: "terminal-btn", children: showPDF ? _jsxs(_Fragment, { children: [_jsx(FaTimes, {}), " Hide Resume"] }) : _jsxs(_Fragment, { children: [_jsx(FaEye, {}), " View Resume"] }) }), _jsxs("button", { onClick: handleDownload, className: "terminal-btn download-btn", children: [_jsx(FaDownload, {}), " Download PDF"] })] }), _jsx("div", { className: `resume-viewer-container ${showPDF ? 'slide-down' : 'slide-up'}`, ref: pdfWrapperRef, children: _jsxs("div", { className: "pdf-container", children: [pdfLoading && (_jsx("div", { className: "pdf-loading", children: _jsx("p", { children: "Loading PDF..." }) })), pdfError && (_jsxs("div", { className: "pdf-error", children: [_jsx("p", { children: pdfError }), _jsxs("button", { onClick: handleDownload, className: "terminal-btn", children: [_jsx(FaDownload, {}), " Download Instead"] })] })), _jsx(Document, { file: pdfFile, onLoadSuccess: onDocumentLoadSuccess, onLoadError: onDocumentLoadError, onLoadStart: onDocumentLoadStart, loading: _jsx("div", { children: "Loading PDF..." }), children: _jsx(Page, { pageNumber: 1, width: width, renderTextLayer: false, renderAnnotationLayer: false }) })] }) })] }));
+    return (_jsxs("section", { id: "resume", className: "resume-section", children: [_jsxs(TerminalBox, { isVisible: terminalVisible, children: [TERMINAL_COMMANDS.resume, _jsx("span", { className: "blinking-cursor", children: "|" })] }), _jsxs("div", { className: "resume-buttons", children: [_jsx("button", { onClick: () => setShowPDF(!showPDF), className: "terminal-btn", children: showPDF ? _jsxs(_Fragment, { children: [_jsx(FaTimes, {}), " Hide Resume"] }) : _jsxs(_Fragment, { children: [_jsx(FaEye, {}), " View Resume"] }) }), _jsxs("button", { onClick: handleDownload, className: "terminal-btn download-btn", children: [_jsx(FaDownload, {}), " Download PDF"] })] }), _jsx("div", { className: `resume-viewer-container ${showPDF ? 'slide-down' : 'slide-up'}`, ref: pdfWrapperRef, children: _jsx("div", { className: "pdf-container", children: _jsx(Document, { file: RESUME_DATA.pdfFile, children: _jsx(Page, { pageNumber: 1, width: width, renderTextLayer: false, renderAnnotationLayer: false }) }) }) })] }));
 };
-// const ContactsView = () => (
-// );
-// const HeaderView = () => (
-// );
-// const HeroView = () => (
-// );
-// const FooterView = () => (
-// );
-export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView,
-// ContactsView,
-// HeaderView,
-// HeroView,
-// FooterView,
- };
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView, };
