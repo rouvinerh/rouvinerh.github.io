@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaDownload, FaTimes, FaEye } from 'react-icons/fa';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { SiGitbook } from "react-icons/si";
-
+import "react-pdf/dist/esm/Page/TextLayer.css";
 
 function LoadingView({ onLoadingComplete }: { onLoadingComplete: () => void }) {
     const commandLine = '$ ./load-portfolio';
@@ -81,7 +82,7 @@ function AboutView() {
             </p>
 
             <p id="about-description" className="terminal-box">
-                whoami --certs<span className={'blinking-cursor'}></span><br />
+                whoami --certs --links<span className={'blinking-cursor'}></span><br />
                 Hello, I'm Rouvin, an InfoSec student from the National University of Singapore specialising in offensive security.
             </p>
             <div className="social-icons-container">
@@ -171,8 +172,15 @@ const ExperienceView = () => {
             role: 'Offensive Security Engineer Intern',
             company: 'PayPal',
             period: 'May 2025 — Present',
-            description: "Triaging bug reports and pentesting new features under PayPal's Offensive Security team.",
+            description: "Triaging bug reports and pentesting under PayPal's Offensive Security team.",
             logoSrc: 'paypal-logo.png',
+        },
+        {
+            role: 'Security Researcher',
+            company: 'Synack Red Team',
+            period: 'May 2025 — Present',
+            description: "Pentesting web and host targets on a freelance basis.",
+            logoSrc: 'synack.webp',
         },
         {
             role: 'Cyber Instructor',
@@ -298,7 +306,7 @@ const ProjectsView = () => {
         {
             title: '🐛 Bug Bounties',
             description: 'Hunting and reporting bugs on bug bounties VDPs when I am free (and bored).',
-            imageSrc: 'bugbounty.png',
+            imageSrc: 'xss.png',
             link: '#',
         },
         {
@@ -469,10 +477,112 @@ const ProjectsView = () => {
         </section>
     );
 }
-// const ResumeView = () => (
 
-// );
+const ResumeView = () => {
+    const [terminalVisible, setTerminalVisible] = useState(false);
+    const [showPDF, setShowPDF] = useState(false);
+    
+    const pdfFile = '/RouvinErh_CV.pdf'; 
+    const pdfWrapperRef = useRef(null);
+    const [width, setWidth] = useState(793);
 
+    // Configure PDF.js worker
+    useEffect(() => { 
+        pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.mjs`; 
+    }, []);
+
+    // Terminal animation observer
+    useEffect(() => {
+        const terminalObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTerminalVisible(true);
+                    terminalObserver.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        const terminalElement = document.querySelector('#resume .terminal-box');
+        if (terminalElement) {
+            terminalObserver.observe(terminalElement);
+        }
+
+        return () => terminalObserver.disconnect();
+    }, []);
+
+    // Responsive width observer
+    useEffect(() => {
+        if (!pdfWrapperRef.current) return;
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                const containerWidth = entry.target.clientWidth;
+                const newWidth = Math.min(containerWidth * 0.95, 793); // Max width of 793
+                
+                if (Math.abs(newWidth - width) > 5) { // Only update if significant change
+                    setWidth(newWidth);
+                }
+            }
+        });
+        
+        resizeObserver.observe(pdfWrapperRef.current);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [width]);
+
+    const handleDownload = () => {
+        const link = document.createElement('a');
+        link.href = pdfFile;
+        link.download = 'RouvinErh_CV.pdf';
+        link.target = '_blank'; // Open in new tab as fallback
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+
+    return (
+        <section id="resume" className="resume-section">
+            <div className={`terminal-box ${terminalVisible ? 'visible' : ''}`}>
+                ./resume --download-view<span className="blinking-cursor">|</span>
+            </div>
+
+            <div className="resume-buttons">
+                <button
+                    onClick={() => setShowPDF(!showPDF)}
+                    className="terminal-btn"
+                >
+                    {showPDF ? <><FaTimes /> Hide Resume</> : <><FaEye /> View Resume</>}
+                </button>
+
+                <button
+                    onClick={handleDownload}
+                    className="terminal-btn download-btn"
+                >
+                    <FaDownload /> Download PDF
+                </button>
+            </div>
+
+            <div className={`resume-viewer-container ${showPDF ? 'slide-down' : 'slide-up'}`} ref={pdfWrapperRef}>  
+                <div className="pdf-container">
+                    <Document 
+                        file={pdfFile}
+                    >
+                        <Page
+                            pageNumber={1}
+                            width={width} // Use dynamic width instead of hard-coded 793
+                            renderTextLayer={false}
+                            renderAnnotationLayer={false}
+                        />
+                    </Document>
+                </div>
+            </div>
+        </section>
+    );
+};
 // const ContactsView = () => (
 
 // );
@@ -495,7 +605,7 @@ export {
     EducationView,
     ExperienceView,
     ProjectsView,
-    // ResumeView,
+    ResumeView,
     // ContactsView,
     // HeaderView,
     // HeroView,

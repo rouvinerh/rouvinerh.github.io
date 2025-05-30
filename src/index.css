@@ -14,6 +14,10 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
+section {
+    margin-bottom: 1rem; /* Reduce spacing between all sections */
+}
+
 body {
     font-family: 'Fira Code', monospace;
     background-color: #1e1e1e;
@@ -278,7 +282,7 @@ h1 {
 }
 
 .experience-section {
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     background: #1e1e1e;
 }
 
@@ -478,7 +482,7 @@ h1 {
 }
 
 .projects-section {
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     flex-direction: column;
     align-items: center;
 }
@@ -674,6 +678,119 @@ body.popup-active {
   
 body.popup-active .bug-image-popup {
     pointer-events: auto; 
+}
+
+#resume .terminal-box {
+    margin: 1rem auto; /* Reduced from 2rem auto */
+}
+
+.resume-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.terminal-btn {
+    background-color: #151515;
+    color: #f2f2f2;
+    border: none;
+    border-left: px solid #48B5E0;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 6px 12px #00000026;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.terminal-btn:hover {
+    background-color: #2b2b2b;
+    box-shadow: 0 8px 16px #4885B033;
+    transform: translateY(-2px);
+}
+
+.terminal-btn:active {
+    background-color: #101010;
+    box-shadow: 0 4px 8px #00000044;
+    transform: translateY(1px);
+}
+
+.resume-viewer-container {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    border-radius: 8px;
+    margin-top: 1rem; /* Reduced from 2rem */
+}
+
+.resume-viewer-container.slide-down {
+    max-height: 200vh; /* Remove height restriction */
+    height: auto; /* Let it expand to fit content */
+    opacity: 1;
+    overflow: visible; /* No internal scrolling */
+}
+
+.resume-viewer-container.slide-up {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.resume-viewer-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem 1rem;
+    border-bottom: 1.5px solid #48B5E0;
+    background-color: #111111;
+    box-shadow: inset 0 -1px 5px #48B5E02b;
+}
+
+.pdf-container {
+    width: 100%;
+    height: auto; /* Let it size to content */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: #1e1e1e; /* Light background for PDF contrast */
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.react-pdf__Page {
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: #111111;
+}
+
+.react-pdf__Page__canvas {
+    max-width: 100%;
+    height: auto !important;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pdf-container {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf-container {
+        padding: 0.25rem;
+    }
 }
 
 /* For mobile devices */
