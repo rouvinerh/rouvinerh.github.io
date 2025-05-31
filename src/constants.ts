@@ -185,20 +185,24 @@ export const FOOTER_DATA = {
     linkedInUrl: "https://linkedin.com/in/rouvinerh",
     technologies: [
         {
-        iconType: "typescript",
-        url: "https://www.typescriptlang.org/"
+            iconType: "typescript",
+            url: "https://www.typescriptlang.org/",
+            hover: "TypeScript"
         },
         {
-        iconType: "react",
-        url: "https://reactjs.org/"
+            iconType: "react",
+            url: "https://reactjs.org/",
+            hover: "React"
         },
         {
-        iconType: "vite",
-        url: "https://vite.dev/"
+            iconType: "vite",
+            url: "https://vite.dev/",
+            hover: "Vite"
         },
         {
-        iconType: "claude",
-        url: "https://claude.ai/"
+            iconType: "claude",
+            url: "https://claude.ai/",
+            hover: "Claude AI"
         }
     ]
 };

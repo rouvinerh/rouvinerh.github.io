@@ -173,19 +173,23 @@ export const FOOTER_DATA = {
     technologies: [
         {
             iconType: "typescript",
-            url: "https://www.typescriptlang.org/"
+            url: "https://www.typescriptlang.org/",
+            hover: "TypeScript"
         },
         {
             iconType: "react",
-            url: "https://reactjs.org/"
+            url: "https://reactjs.org/",
+            hover: "React"
         },
         {
             iconType: "vite",
-            url: "https://vite.dev/"
+            url: "https://vite.dev/",
+            hover: "Vite"
         },
         {
             iconType: "claude",
-            url: "https://claude.ai/"
+            url: "https://claude.ai/",
+            hover: "Claude AI"
         }
     ]
 };

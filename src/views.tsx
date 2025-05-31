@@ -464,7 +464,7 @@ const FooterView = () => {
                     {FOOTER_DATA.technologies.map((tech: any) => (
                         <span key={tech.iconType}>
                             <a href={tech.url} target="_blank" rel="noopener noreferrer" className="footer-tech-link">
-                                <span className={`footer-tech-icon-${tech.iconType}`}>
+                                <span className={`footer-tech-icon-${tech.iconType}`} data-tooltip={tech.hover}>
                                     {getTechIcon(tech.iconType)}
                                 </span>
                             </a>
