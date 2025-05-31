@@ -798,7 +798,7 @@ body.popup-active .bug-image-popup {
 }
 
 .footer-icon {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #f2f2f2;
     padding: 0.8rem;
     border-radius: 8px;
@@ -811,7 +811,7 @@ body.popup-active .bug-image-popup {
 }
 
 .footer-tech {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: #f2f2f2;
     display: flex;
     align-items: center;
@@ -823,7 +823,7 @@ body.popup-active .bug-image-popup {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     transition: transform 0.3s ease;
     margin: 0 0.3rem;
     padding: 0.1rem;
@@ -897,7 +897,7 @@ body.popup-active .bug-image-popup {
 
     .cert-logos > .social-tooltip::after {
         bottom: -25px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .education-university > .social-tooltip::after {
