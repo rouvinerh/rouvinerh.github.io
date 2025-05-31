@@ -163,10 +163,10 @@ export const RESUME_DATA = {
 
 export const TERMINAL_COMMANDS = {
     about: "whoami --certs --links",
-    education: "./education --uni",
-    experience: "./experiences --all",
-    projects: "./projects --hover",
-    resume: "./resume "
+    education: "grep 'uni' education.log",
+    experience: "tree ~/experience.log",
+    projects: "cat ~/projects.txt",
+    resume: "./show-resume --download"
 };
 
 export const ANIMATION_CONFIG = {
@@ -177,4 +177,28 @@ export const ANIMATION_CONFIG = {
     nextLineDelay: 500,
     skipButtonDelay: 50,
     loadingCompleteDelay: 1300
+};
+
+export const FOOTER_DATA = {
+    name: "Rouvin Erh",
+    email: "erhrouvin@gmail.com",
+    linkedInUrl: "https://linkedin.com/in/rouvinerh",
+    technologies: [
+        {
+        iconType: "typescript",
+        url: "https://www.typescriptlang.org/"
+        },
+        {
+        iconType: "react",
+        url: "https://reactjs.org/"
+        },
+        {
+        iconType: "vite",
+        url: "https://vite.dev/"
+        },
+        {
+        iconType: "claude",
+        url: "https://claude.ai/"
+        }
+    ]
 };

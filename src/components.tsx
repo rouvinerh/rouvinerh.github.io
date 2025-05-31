@@ -1,8 +1,7 @@
-import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { SiGitbook } from "react-icons/si";
 import { SOCIAL_LINKS, CERTIFICATIONS, BUG_POPUP_DATA } from './constants';
 
-// Types
 interface SocialLinkProps {
     href: string;
     tooltip: string;
@@ -45,7 +44,12 @@ interface TerminalBoxProps {
     isVisible?: boolean;
 }
 
-// Social Link Component
+interface BugImagePopupProps {
+    isVisible: boolean;
+    onClose: () => void;
+}
+
+
 export const SocialLink = ({ href, tooltip, icon, className = "social-icon" }: SocialLinkProps) => (
     <a href={href} className="social-tooltip" data-tooltip={tooltip} target="_blank" rel="noopener noreferrer">
         <div className={className}>
@@ -54,14 +58,12 @@ export const SocialLink = ({ href, tooltip, icon, className = "social-icon" }: S
     </a>
 );
 
-// Certification Badge Component
 export const CertificationBadge = ({ href, tooltip, imageSrc, alt }: CertificationProps) => (
     <a href={href} className="social-tooltip" data-tooltip={tooltip} target="_blank" rel="noopener noreferrer">
         <img src={imageSrc} alt={alt} className="cert-logo" />
     </a>
 );
 
-// Timeline Item Component
 export const TimelineItem = ({ role, company, period, description, logoSrc, index, isVisible }: TimelineItemProps) => (
     <div className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'} ${isVisible ? 'visible' : ''}`}>
         <div className="timeline-circle">
@@ -76,7 +78,6 @@ export const TimelineItem = ({ role, company, period, description, logoSrc, inde
     </div>
 );
 
-// Project Card Component
 export const ProjectCard = ({ 
     title, 
     description, 
@@ -94,7 +95,7 @@ export const ProjectCard = ({
     };
 
     const handleButtonClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); // Prevent card flip when clicking button
+        e.stopPropagation(); 
         if (onSpecialClick) {
             e.preventDefault();
             onSpecialClick();
@@ -136,18 +137,12 @@ export const ProjectCard = ({
     );
 };
 
-// Terminal Box Component
 export const TerminalBox = ({ children, className = "", isVisible = true }: TerminalBoxProps) => (
     <div className={`terminal-box ${className} ${isVisible ? 'visible' : ''}`}>
         {children}
     </div>
 );
 
-// Bug Image Popup Component
-interface BugImagePopupProps {
-    isVisible: boolean;
-    onClose: () => void;
-}
 
 export const BugImagePopup = ({ isVisible, onClose }: BugImagePopupProps) => (
     <div className={`bug-image-popup ${isVisible ? 'visible' : ''}`}>
@@ -157,7 +152,6 @@ export const BugImagePopup = ({ isVisible, onClose }: BugImagePopupProps) => (
     </div>
 );
 
-// Social Icons Container
 export const SocialIconsContainer = () => {
     const getIcon = (iconType: string) => {
         switch (iconType) {
@@ -182,8 +176,6 @@ export const SocialIconsContainer = () => {
     );
 };
 
-// Certifications Grid
-// Certifications Grid
 export const CertificationsGrid = () => (
     <div className="cert-logos">
         {CERTIFICATIONS.map((cert, index) => (

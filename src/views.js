@@ -1,10 +1,11 @@
 import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
-import { FaDownload, FaTimes, FaEye } from 'react-icons/fa';
+import { FaDownload, FaTimes, FaEye, FaEnvelope, FaLinkedin } from 'react-icons/fa';
+import { SiTypescript, SiReact, SiClaude, SiVite } from 'react-icons/si';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { SocialIconsContainer, CertificationsGrid, TimelineItem, TerminalBox, BugImagePopup, CertificationBadge } from './components';
-import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG } from './constants';
+import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG, FOOTER_DATA } from './constants';
 import "react-pdf/dist/esm/Page/TextLayer.css";
 function LoadingView({ onLoadingComplete }) {
     const [skipButtonVisible, setSkipButtonVisible] = useState(false);
@@ -211,4 +212,16 @@ const ResumeView = () => {
     };
     return (_jsxs("section", { id: "resume", className: "resume-section", children: [_jsxs(TerminalBox, { isVisible: terminalVisible, children: [TERMINAL_COMMANDS.resume, _jsx("span", { className: "blinking-cursor" })] }), _jsxs("div", { className: "resume-buttons", children: [_jsx("button", { onClick: () => setShowPDF(!showPDF), className: "terminal-btn", children: showPDF ? _jsxs(_Fragment, { children: [_jsx(FaTimes, {}), " Hide Resume"] }) : _jsxs(_Fragment, { children: [_jsx(FaEye, {}), " View Resume"] }) }), _jsxs("button", { onClick: handleDownload, className: "terminal-btn download-btn", children: [_jsx(FaDownload, {}), " Download"] })] }), _jsx("div", { className: `resume-viewer-container ${showPDF ? 'slide-down' : 'slide-up'}`, ref: pdfWrapperRef, children: _jsx("div", { className: "pdf-container", children: _jsx(Document, { file: RESUME_DATA.pdfFile, children: _jsx(Page, { pageNumber: 1, width: width, renderTextLayer: false, renderAnnotationLayer: false }) }) }) })] }));
 };
-export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView };
+const FooterView = () => {
+    const getTechIcon = (iconType) => {
+        switch (iconType) {
+            case 'typescript': return _jsx(SiTypescript, {});
+            case 'react': return _jsx(SiReact, {});
+            case 'claude': return _jsx(SiClaude, {});
+            case 'vite': return _jsx(SiVite, {});
+            default: return null;
+        }
+    };
+    return (_jsx("footer", { className: "footer-section", children: _jsxs("div", { className: "footer-content", children: [_jsxs("div", { className: "footer-contact-text", children: ["Contact me via", ' '] }), _jsxs("div", { className: "footer-contact", children: [_jsx("a", { href: `mailto:${FOOTER_DATA.email}`, className: "footer-link", children: _jsx(FaEnvelope, { className: "footer-icon" }) }), _jsx("a", { href: FOOTER_DATA.linkedInUrl, target: "_blank", rel: "noopener noreferrer", className: "footer-link", children: _jsx(FaLinkedin, { className: "footer-icon" }) })] }), _jsxs("div", { className: "footer-tech", children: ["Made using", ' ', FOOTER_DATA.technologies.map((tech) => (_jsx("span", { children: _jsx("a", { href: tech.url, target: "_blank", rel: "noopener noreferrer", className: "footer-tech-link", children: _jsx("span", { className: `footer-tech-icon-${tech.iconType}`, children: getTechIcon(tech.iconType) }) }) }, tech.iconType)))] })] }) }));
+};
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView, FooterView };
