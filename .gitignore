@@ -293,5 +293,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,windows,macos,linux,test
+src/*.js
+src/**/*.js
+*.js.map

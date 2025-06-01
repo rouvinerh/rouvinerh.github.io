@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
-import { FaDownload, FaTimes, FaEye, FaEnvelope, FaLinkedin } from 'react-icons/fa';
-import { SiTypescript, SiReact, SiClaude, SiVite } from 'react-icons/si';
+import { FaDownload, FaTimes, FaEye } from 'react-icons/fa';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { SocialIconsContainer,  CertificationsGrid,  TimelineItem ,  TerminalBox,  BugImagePopup, CertificationBadge } from './components';
-import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG, FOOTER_DATA } from './constants';
+import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG } from './constants';
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
 function LoadingView({ onLoadingComplete }: { onLoadingComplete: () => void }) {
@@ -434,47 +433,6 @@ const ResumeView = () => {
     );
 };
 
-const FooterView = () => {
-    const getTechIcon = (iconType: string) => {
-        switch (iconType) {
-            case 'typescript': return <SiTypescript />;
-            case 'react': return <SiReact />;
-            case 'claude': return <SiClaude />;
-            case 'vite': return <SiVite />;
-            default: return null;
-        }
-    };
 
-    return (
-        <footer className="footer-section">
-            <div className="footer-content">
-                <div className="footer-contact-text">
-                    Contact me via{' '}
-                </div>
-                <div className="footer-contact">
-                    <a href={`mailto:${FOOTER_DATA.email}`} className="footer-link">
-                        <FaEnvelope className="footer-icon" />
-                    </a>
-                    <a href={FOOTER_DATA.linkedInUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
-                        <FaLinkedin className="footer-icon" />
-                    </a>
-                </div>
-                <div className="footer-tech">
-                    Made using{' '}
-                    {FOOTER_DATA.technologies.map((tech: any) => (
-                        <span key={tech.iconType}>
-                            <a href={tech.url} target="_blank" rel="noopener noreferrer" className="footer-tech-link">
-                                <span className={`footer-tech-icon-${tech.iconType}`} data-tooltip={tech.hover}>
-                                    {getTechIcon(tech.iconType)}
-                                </span>
-                            </a>
 
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </footer>
-    );
-};
-
-export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView, FooterView };
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView };

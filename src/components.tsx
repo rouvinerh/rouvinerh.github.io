@@ -1,6 +1,6 @@
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { SiGitbook } from "react-icons/si";
-import { SOCIAL_LINKS, CERTIFICATIONS, BUG_POPUP_DATA } from './constants';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
+import { SiGitbook, SiTypescript, SiReact, SiClaude, SiVite } from 'react-icons/si';
+import { SOCIAL_LINKS, CERTIFICATIONS, BUG_POPUP_DATA, FOOTER_DATA} from './constants';
 
 interface SocialLinkProps {
     href: string;
@@ -189,3 +189,46 @@ export const CertificationsGrid = () => (
         ))}
     </div>
 );
+
+export const Footer = () => {
+    const getTechIcon = (iconType: string) => {
+        switch (iconType) {
+            case 'typescript': return <SiTypescript />;
+            case 'react': return <SiReact />;
+            case 'claude': return <SiClaude />;
+            case 'vite': return <SiVite />;
+            default: return null;
+        }
+    };
+
+    return (
+        <footer className="footer-section">
+            <div className="footer-content">
+                <div className="footer-contact-text">
+                    Contact me via{' '}
+                </div>
+                <div className="footer-contact">
+                    <a href={`mailto:${FOOTER_DATA.email}`} className="footer-link">
+                        <FaEnvelope className="footer-icon" />
+                    </a>
+                    <a href={FOOTER_DATA.linkedInUrl} target="_blank" rel="noopener noreferrer" className="footer-link">
+                        <FaLinkedin className="footer-icon" />
+                    </a>
+                </div>
+                <div className="footer-tech">
+                    Made using{' '}
+                    {FOOTER_DATA.technologies.map((tech: any) => (
+                        <span key={tech.iconType}>
+                            <a href={tech.url} target="_blank" rel="noopener noreferrer" className="footer-tech-link">
+                                <span className={`footer-tech-icon-${tech.iconType}`} data-tooltip={tech.hover}>
+                                    {getTechIcon(tech.iconType)}
+                                </span>
+                            </a>
+
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </footer>
+    );
+};

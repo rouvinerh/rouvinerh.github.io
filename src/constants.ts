@@ -163,10 +163,11 @@ export const RESUME_DATA = {
 
 export const TERMINAL_COMMANDS = {
     about: "whoami --certs --links",
-    education: "grep 'uni' education.log",
+    education: "grep 'uni' ~/education.txt",
     experience: "tree ~/experience.log",
     projects: "cat ~/projects.txt",
-    resume: "./show-resume --download"
+    resume: "./show-resume --download",
+    life: "strings personal-life; sudo shutdown now"
 };
 
 export const ANIMATION_CONFIG = {

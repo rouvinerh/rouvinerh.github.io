@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { LoadingView, AboutView, ResumeView, EducationView, ExperienceView, ProjectsView } from "./views";
+import { Footer } from "./components";
 import './index.css';
-import { LoadingView, AboutView, ResumeView, EducationView, ExperienceView, ProjectsView, FooterView } from "./views.js";
 
 function App() {
     const [showAbout, setShowAbout] = useState(false);
@@ -16,7 +17,7 @@ function App() {
             <ExperienceView />
             <ProjectsView />
             <EducationView />
-            <FooterView />
+            <Footer />
           </div>
         )}
       </div>
