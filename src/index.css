@@ -290,7 +290,7 @@ section {
 }
 
 /* Experience Section */
-.experience-section {
+.experience-view {
     padding: 2rem 1rem;
     background: #1e1e1e;
     max-width: 1200px;
@@ -463,7 +463,7 @@ section {
 }
 
 /* Projects Section */
-.projects-section {
+.projects-view {
     padding: 2rem;
     flex-direction: column;
     align-items: center;
@@ -723,6 +723,17 @@ body.popup-active .bug-image-popup {
     background-color: #101010;
     box-shadow: 0 4px 8px #00000044;
     transform: translateY(1px);
+} 
+
+.resume-view {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.resume-view.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .resume-viewer-container {
@@ -782,7 +793,7 @@ body.popup-active .bug-image-popup {
 }
 
 /* Footer Section */
-.footer-section {
+.footer {
     background: #151515;
     border-top: 2px solid #48B5E0;
     padding: 2rem 1rem 1rem;

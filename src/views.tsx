@@ -172,7 +172,7 @@ const ExperienceView = () => {
     }, []);
 
     return (
-        <section id="experience" className="experience-section">
+        <section id="experience" className="experience-view">
             <TerminalBox isVisible={terminalVisible}>
                 {TERMINAL_COMMANDS.experience}<span className="blinking-cursor"></span>
             </TerminalBox>
@@ -278,7 +278,7 @@ const ProjectsView = () => {
     }, [showBugImage]);
 
     return (
-        <section id="projects" className="projects-section">
+        <section id="projects" className="projects-view">
             <TerminalBox isVisible={terminalVisible}>
                 {TERMINAL_COMMANDS.projects}<span className="blinking-cursor"></span>
             </TerminalBox>
@@ -337,12 +337,31 @@ const ProjectsView = () => {
 const ResumeView = () => {
     const [terminalVisible, setTerminalVisible] = useState(false);
     const [showPDF, setShowPDF] = useState(false);
-    
+    const [isVisible, setIsVisible] = useState(false);
     const pdfWrapperRef = useRef(null);
+    const sectionRef = useRef(null);
     const [width, setWidth] = useState(RESUME_DATA.defaultWidth);
 
     useEffect(() => { 
         pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@4.8.69/build/pdf.worker.min.mjs`; 
+    }, []);
+
+    useEffect(() => {
+        const sectionObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    sectionObserver.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            sectionObserver.observe(sectionRef.current);
+        }
+
+        return () => sectionObserver.disconnect();
     }, []);
 
     useEffect(() => {
@@ -363,6 +382,8 @@ const ResumeView = () => {
 
         return () => terminalObserver.disconnect();
     }, []);
+    
+
 
     useEffect(() => {
         if (!pdfWrapperRef.current) return;
@@ -396,7 +417,11 @@ const ResumeView = () => {
     };
 
     return (
-        <section id="resume" className="resume-section">
+        <section 
+            id="resume" 
+            ref={sectionRef}
+            className={`resume-view ${isVisible ? 'visible' : ''}`}
+        >
             <TerminalBox isVisible={terminalVisible}>
                 {TERMINAL_COMMANDS.resume}<span className="blinking-cursor"></span>
             </TerminalBox>
@@ -429,6 +454,37 @@ const ResumeView = () => {
                     </Document>
                 </div>
             </div>
+        </section>
+    );
+};
+
+const LifeView = () => {
+
+    const [terminalVisible, setTerminalVisible] = useState(false);
+
+        useEffect(() => {
+        const terminalObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setTerminalVisible(true);
+                terminalObserver.disconnect();
+            }
+        }, { threshold: 0.1 });
+
+        const terminalElement = document.querySelector('#life .terminal-box');
+        if (terminalElement) terminalObserver.observe(terminalElement);
+
+        return () => {
+            if (terminalElement) terminalObserver.unobserve(terminalElement);
+        }
+    }, []);
+
+    return (
+        <section id="life" className="life-view">
+            <TerminalBox isVisible={terminalVisible}>
+                {TERMINAL_COMMANDS.life}<span className="blinking-cursor"></span>
+            </TerminalBox>
+
+            
         </section>
     );
 };

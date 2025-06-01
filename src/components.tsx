@@ -202,7 +202,7 @@ export const Footer = () => {
     };
 
     return (
-        <footer className="footer-section">
+        <footer className="footer">
             <div className="footer-content">
                 <div className="footer-contact-text">
                     Contact me via{' '}
