@@ -168,7 +168,7 @@ export const TERMINAL_COMMANDS = {
     experience: "tree ~/experience.log",
     projects: "cat ~/projects.txt",
     resume: "./show-resume --download",
-    life: "bash personal-life.sh; sudo shutdown now"
+    life: "sh my-life.sh; sudo shutdown"
 };
 
 export const ANIMATION_CONFIG = {

@@ -1165,6 +1165,15 @@ body.popup-active .bug-image-popup {
     #education .terminal-box {
         margin-bottom: 1.5rem;
     }
+
+    .footer-contact-text {
+        font-size: 1.1rem;
+    }
+
+    .footer-tech {
+        font-size: 1rem;
+    }
+
 }
 
 /* Very small screens */
@@ -1354,24 +1363,23 @@ body.popup-active .bug-image-popup {
     }
     
     .card-image {
-        height: 150px;
+        height: 140px;
     }
     
     .card-content {
         padding: 0.8rem;
-        height: calc(100% - 150px);
     }
     
     .card-title {
-        font-size: 0.9rem;
-    }
-    
-    .card-story {
         font-size: 0.8rem;
     }
     
+    .card-story {
+        font-size: 0.75rem;
+    }
+    
     .click-hint {
-        bottom: 0.8rem;
+        bottom: 0rem;
         right: 0.8rem;
     }
 }
