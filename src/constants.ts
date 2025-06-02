@@ -89,7 +89,7 @@ export const EXPERIENCE_DATA = [
         role: 'OffSec Engineer Intern',
         company: 'PayPal',
         period: 'May 2025 — Present',
-        description: "Triaging bug reports and product pentesting with PayPal's Offensive Security team.",
+        description: "Triaging bug reports and product pentesting with PayPal's OffSec team.",
         logoSrc: 'assets/logos/paypal-logo.png',
     },
     {
