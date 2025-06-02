@@ -220,6 +220,6 @@ export const LIFE_CARD_INFO = [
         type: "canoe",
         title: "Canoeing",
         image: "assets/img/canoe.jpg", 
-        story: "I've loved canoe sprint since I was 13. I was the previous Varsity Team Captain of NUS Canoeing, and have represented Singapore internationally in Vietnam and Portugal!"
+        story: "I've canoe sprint since I was 13. I was the previous Varsity Captain of NUS Canoeing, and have represented Singapore internationally in Vietnam and Portugal!"
     }
 ];
