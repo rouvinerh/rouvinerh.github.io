@@ -49,6 +49,26 @@ interface BugImagePopupProps {
     onClose: () => void;
 }
 
+interface LifeCardData {
+    type: string;
+    title: string;
+    image: string;
+    story: string;
+}
+
+interface LifeCardProps {
+    card: LifeCardData;
+    className: string;
+    showHint?: boolean;
+}
+
+interface LifeCardStackProps {
+    isVisible: boolean;
+    currentCard: LifeCardData;
+    nextCard: LifeCardData;
+    hasClicked: boolean;
+    onCardClick: () => void;
+}
 
 export const SocialLink = ({ href, tooltip, icon, className = "social-icon" }: SocialLinkProps) => (
     <a href={href} className="social-tooltip" data-tooltip={tooltip} target="_blank" rel="noopener noreferrer">
@@ -232,3 +252,46 @@ export const Footer = () => {
         </footer>
     );
 };
+
+export const LifeCard = ({ card, className, showHint = false }: LifeCardProps) => (
+    <div className={`life-card ${className}`}>
+        <div 
+            className="card-image"
+            style={{backgroundImage: `url(${card.image})`}}
+        />
+        <div className="card-content">
+            <div className="card-header">
+                <h3 className="card-title">{card.title}</h3>
+            </div>
+            <p className="card-story">{card.story}</p>
+            
+            {showHint && (
+                <div className="click-hint">
+                    <span className="hint-text">(click me!)</span>
+                </div>
+            )}
+        </div>
+    </div>
+);
+
+export const LifeCardStack = ({ 
+    isVisible, 
+    currentCard, 
+    nextCard, 
+    hasClicked, 
+    onCardClick 
+}: LifeCardStackProps) => (
+    <div className={`card-stack-container ${isVisible ? 'visible' : ''}`}>
+        <div className="card-stack" onClick={onCardClick}>
+            <LifeCard 
+                card={nextCard} 
+                className="back-card" 
+            />
+            <LifeCard 
+                card={currentCard} 
+                className="front-card" 
+                showHint={!hasClicked}
+            />
+        </div>
+    </div>
+);

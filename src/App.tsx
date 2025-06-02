@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LoadingView, AboutView, ResumeView, EducationView, ExperienceView, ProjectsView } from "./views";
+import { LoadingView, AboutView, ResumeView, EducationView, ExperienceView, ProjectsView, LifeView } from "./views";
 import { Footer } from "./components";
 import './index.css';
 
@@ -17,6 +17,7 @@ function App() {
             <ExperienceView />
             <ProjectsView />
             <EducationView />
+            <LifeView />
             <Footer />
           </div>
         )}

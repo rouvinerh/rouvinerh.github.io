@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { ConsoleTyping, ConsoleOutput, ConsoleTypingWithBackspace } from './consoleSim';
 import { FaDownload, FaTimes, FaEye } from 'react-icons/fa';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { SocialIconsContainer,  CertificationsGrid,  TimelineItem ,  TerminalBox,  BugImagePopup, CertificationBadge } from './components';
-import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG } from './constants';
+import { SocialIconsContainer,  CertificationsGrid,  TimelineItem ,  TerminalBox,  BugImagePopup, CertificationBadge, LifeCardStack } from './components';
+import { LOADING_COMMAND, LOADING_OUTPUT_LINES, ABOUT_PHRASES, ABOUT_DESCRIPTION, EDUCATION_DATA, EXPERIENCE_DATA, PROJECTS_DATA, RESUME_DATA, TERMINAL_COMMANDS, ANIMATION_CONFIG, LIFE_CARD_INFO } from './constants';
 import "react-pdf/dist/esm/Page/TextLayer.css";
 
 function LoadingView({ onLoadingComplete }: { onLoadingComplete: () => void }) {
@@ -459,10 +459,33 @@ const ResumeView = () => {
 };
 
 const LifeView = () => {
+    const [terminalVisible, setTerminalVisible] = useState<boolean>(false);
+    const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
+    const [hasClicked, setHasClicked] = useState<boolean>(false);
+    const [cardsVisible, setCardsVisible] = useState<boolean>(false);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    
+    const sectionRef = useRef<HTMLElement>(null);
 
-    const [terminalVisible, setTerminalVisible] = useState(false);
+    useEffect(() => {
+        const sectionObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    sectionObserver.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
 
-        useEffect(() => {
+        if (sectionRef.current) {
+            sectionObserver.observe(sectionRef.current);
+        }
+
+        return () => sectionObserver.disconnect();
+    }, []);
+
+    useEffect(() => {
         const terminalObserver = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 setTerminalVisible(true);
@@ -478,17 +501,52 @@ const LifeView = () => {
         }
     }, []);
 
+    useEffect(() => {
+        const cardsObserver = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setCardsVisible(true);
+                cardsObserver.disconnect();
+            }
+        }, { threshold: 0.2 });
+
+        const cardsElement = document.querySelector('#life .card-stack-container');
+        if (cardsElement) cardsObserver.observe(cardsElement);
+
+        return () => {
+            if (cardsElement) cardsObserver.unobserve(cardsElement);
+        }
+    }, []);
+
+    const handleCardClick = (): void => {
+        if (!hasClicked) {
+            setHasClicked(true);
+        }
+        setCurrentCardIndex((prev) => (prev + 1) % LIFE_CARD_INFO.length);
+    };
+
+    const currentCard = LIFE_CARD_INFO[currentCardIndex];
+    const nextCard = LIFE_CARD_INFO[(currentCardIndex + 1) % LIFE_CARD_INFO.length];
+
     return (
-        <section id="life" className="life-view">
+        <section 
+            id="life" 
+            ref={sectionRef}
+            className={`life-view ${isVisible ? 'visible' : ''}`}
+        >
             <TerminalBox isVisible={terminalVisible}>
                 {TERMINAL_COMMANDS.life}<span className="blinking-cursor"></span>
             </TerminalBox>
 
-            
+            <LifeCardStack 
+                isVisible={cardsVisible}
+                currentCard={currentCard}
+                nextCard={nextCard}
+                hasClicked={hasClicked}
+                onCardClick={handleCardClick}
+            />
         </section>
     );
 };
 
 
-
-export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView };
+export { LoadingView, AboutView, EducationView, ExperienceView, ProjectsView, ResumeView, LifeView };

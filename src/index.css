@@ -119,6 +119,20 @@ section {
     transition: all 0.3s ease;
     border-radius: 8px;
     box-shadow: 0 8px 24px #00000026;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
+}
+
+.terminal-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.terminal-box:hover {
+    background: #2b2b2b;
+    box-shadow: 0 4px 4px #4885B066;
+    transition: all 0.3s ease;
 }
 
 .terminal-box:hover {
@@ -253,7 +267,6 @@ section {
     max-width: 900px;
     margin: 1.5rem auto;
     background: #1e1e1e;
-    padding: 2rem;
     border-radius: 8px;
 }
 
@@ -280,7 +293,7 @@ section {
 }
 
 .university-details {
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .university-description, .university-grade {
@@ -295,23 +308,6 @@ section {
     background: #1e1e1e;
     max-width: 1200px;
     margin: 0 auto;
-}
-
-#experience .terminal-box {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
-}
-
-#experience .terminal-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#experience .terminal-box:hover {
-    background: #2b2b2b;
-    box-shadow: 0 4px 4px #4885B066;
-    transition: all 0.3s ease;
 }
 
 /* Timeline */
@@ -471,22 +467,6 @@ section {
     margin: 0 auto;
 }
 
-#projects .terminal-box {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
-}
-
-#projects .terminal-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#projects .terminal-box:hover {
-    background: #2b2b2b;
-    box-shadow: 0 4px 4px #4885B066;
-    transition: all 0.3s ease;
-}
 
 .projects-grid {
     display: grid;
@@ -564,10 +544,21 @@ section {
     width: 100%;
     height: 50%;
     background-size: cover;
-    background-position: center;
+    background-position: center top right;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.card-image-banner::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(transparent, #151515);
+    pointer-events: none;
 }
 
 .card-content-area {
@@ -682,9 +673,6 @@ body.popup-active .bug-image-popup {
 }
 
 /* Resume Section */
-#resume .terminal-box {
-    margin: 1rem auto;
-}
 
 .resume-buttons {
     display: flex;
@@ -727,7 +715,7 @@ body.popup-active .bug-image-popup {
 
 .resume-view {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
@@ -743,6 +731,23 @@ body.popup-active .bug-image-popup {
     transition: max-height 0.5s ease, opacity 0.4s ease;
     border-radius: 8px;
     margin-top: 1rem;
+}
+
+.resume-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease;
+}
+
+.resume-view.visible .resume-buttons {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .resume-viewer-container.slide-down {
@@ -859,7 +864,7 @@ body.popup-active .bug-image-popup {
     color: #FF6B35;
 }
 
-/* Mobile Responsive - CONSOLIDATED */
+/* Mobile Responsive  */
 @media (max-width: 768px) {
     .app-container {
         padding: 10px;
@@ -1145,6 +1150,7 @@ body.popup-active .bug-image-popup {
         margin-bottom: 2rem;
     }
 
+    #life .terminal-box
     #resume .terminal-box,
     #projects .terminal-box,
     #experience .terminal-box,
@@ -1221,5 +1227,163 @@ body.popup-active .bug-image-popup {
     .terminal-btn {
         font-size: 0.9rem;
     }
+}
 
+.card-stack-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto 0;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.card-stack-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.life-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #151515;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-card {
+    opacity: 0;
+    transform: translateY(0);
+    z-index: 1;
+}
+
+.front-card {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 2;
+}
+
+.card-stack {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.1s ease;
+}
+
+.card-stack:hover .front-card {
+    box-shadow: 0 8px 16px #4885B033;
+    transform: translateY(-3px);
+}
+
+.card-stack:active {
+    transform: translateY(3px);
+}
+
+.card-stack:active .front-card {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+/* Card Image */
+.card-image {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(transparent, #151515);
+}
+
+.card-content {
+    padding: 1rem;
+    height: calc(100% - 180px);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card-title {
+    color: #48B5E0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.card-story {
+    color: #f2f2f2;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    flex-grow: 1;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 1rem;
+    color: #f2f2f2;
+}
+
+.hint-text {
+    color: #48B5E0;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+    .card-stack {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .card-image {
+        height: 150px;
+    }
+    
+    .card-content {
+        padding: 0.8rem;
+        height: calc(100% - 150px);
+    }
+    
+    .card-title {
+        font-size: 0.9rem;
+    }
+    
+    .card-story {
+        font-size: 0.8rem;
+    }
+    
+    .click-hint {
+        bottom: 0.8rem;
+        right: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-stack {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .card-stack-container {
+        margin: 2rem auto 0;
+        padding: 0 1rem;
+    }
 }

@@ -1,11 +1,12 @@
 export const LOADING_COMMAND = '$ ./load-portfolio';
 
 export const LOADING_OUTPUT_LINES = [
-    '[+] Loading education...',
-    '[+] Loading certifications...',
-    '[+] Loading work experience...',
-    '[+] Loading projects...',
-    '[+] Loading resume...',
+    '[+] Parsing resume...',
+    '[+] Showing certifications...',
+    '[+] Displaying work experience...',
+    '[+] Generating projects...',
+    '[+] Loading my education...',
+    '[+] Processing personal life...',
     '[+] Website loaded!'
 ];
 
@@ -71,10 +72,10 @@ export const CERTIFICATIONS = [
 ];
 
 export const EDUCATION_DATA = {
-    university: "National University of Singapore",
+    university: "National University of Singapore (NUS)",
     degree: "Bachelor of Computing in Information Security",
     expectedGraduation: "May 2026",
-    gpa: "4.71 / 5.00",
+    gpa: "4.74 / 5.00",
     deansList: {
         href: "https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678",
         tooltip: "Dean's List AY23/24 Semester 2",
@@ -88,7 +89,7 @@ export const EXPERIENCE_DATA = [
         role: 'Offensive Security Engineer Intern',
         company: 'PayPal',
         period: 'May 2025 — Present',
-        description: "Triaging bug reports and pentesting under PayPal's Offensive Security team.",
+        description: "Triaging bug reports and product pentesting with PayPal's Offensive Security team.",
         logoSrc: 'assets/logos/paypal-logo.png',
     },
     {
@@ -109,14 +110,14 @@ export const EXPERIENCE_DATA = [
         role: 'Security Engineer Intern',
         company: 'Ascenda Loyalty',
         period: 'May 2024 - Aug 2024',
-        description: 'Carried out white-box web application pentesting, identifying 20+ security flaws, along with custom DAST tool development.',
+        description: 'Carried out white-box web application pentesting and with custom DAST tooling.',
         logoSrc: 'assets/logos/ascenda-logo.png',
     },
     {
         role: 'Attack Simulation Intern',
         company: 'Cyber Security Agency of Singapore',
         period: 'May 2023 - Aug 2023',
-        description: 'Created Caldera adversary profiles and built an Active Directory environment using Vagrant for running profiles.',
+        description: 'Created Caldera adversary profiles and built Active Directory environments for running said profiles.',
         logoSrc: 'assets/logos/csa-logo.jpg',
     },
 ];
@@ -124,13 +125,13 @@ export const EXPERIENCE_DATA = [
 export const PROJECTS_DATA = [
     {
         title: '📚 Security Journal',
-        description: 'Writing security blogs, and all my security-related adventures in a GitBook.',
+        description: 'Writing security blogs, about CTFs and all my security-related adventures.',
         imageSrc: 'assets/img/gitbook.png',
         link: 'https://rouvin.gitbook.io',
     },
     {
         title: '🐛 Bug Bounties',
-        description: 'Hunting and reporting bugs on bug bounties VDPs when I am free (and bored).',
+        description: 'Hunting and reporting bugs on bug bounties and VDPs when free (and bored).',
         imageSrc: 'assets/img/xss.png',
         link: '#',
         isSpecial: true
@@ -142,8 +143,8 @@ export const PROJECTS_DATA = [
         link: 'https://github.com/rouvinerh/Malware-Tech',
     },
     {
-        title: '🖥️ Boot2Root',
-        description: 'Rooted 264 machines on HTB and 99 machines on Proving Grounds and still going!',
+        title: '🖥️ CTFs + Boot2Root',
+        description: 'Rooting machines on HackTheBox / Grabbing flags in CTFs.',
         imageSrc: 'assets/img/boot2root.png',
         link: 'https://app.hackthebox.com/profile/814999',
     },
@@ -167,7 +168,7 @@ export const TERMINAL_COMMANDS = {
     experience: "tree ~/experience.log",
     projects: "cat ~/projects.txt",
     resume: "./show-resume --download",
-    life: "strings personal-life; sudo shutdown now"
+    life: "bash personal-life.sh; sudo shutdown now"
 };
 
 export const ANIMATION_CONFIG = {
@@ -175,9 +176,9 @@ export const ANIMATION_CONFIG = {
     backspaceSpeed: 30,
     waitDuration: 1000,
     loadingTypingSpeed: 50,
-    nextLineDelay: 500,
+    nextLineDelay: 450,
     skipButtonDelay: 50,
-    loadingCompleteDelay: 1300
+    loadingCompleteDelay: 1200
 };
 
 export const FOOTER_DATA = {
@@ -207,3 +208,18 @@ export const FOOTER_DATA = {
         }
     ]
 };
+
+export const LIFE_CARD_INFO = [
+    {
+        type: "travel",
+        title: "Travelling",
+        image: "assets/img/travel.jpg",
+        story: "When not at a desk, I love seeing the world. I've been to 25 countries and love making friends overseas. That's me in Iceland! "
+    },
+    {
+        type: "canoe",
+        title: "Canoeing",
+        image: "assets/img/canoe.jpg", 
+        story: "I've loved canoe sprint since I was 13. I was the previous Varsity Team Captain of NUS Canoeing, and have represented Singapore internationally in Vietnam and Portugal!"
+    }
+];
