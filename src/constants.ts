@@ -163,10 +163,10 @@ export const RESUME_DATA = {
 };
 
 export const TERMINAL_COMMANDS = {
-    about: "whoami --certs --links",
-    education: "grep 'uni' ~/education.txt",
-    experience: "tree ~/experience.log",
-    projects: "cat ~/projects.txt",
+    about: "whoami | certs && links",
+    education: "grep 'uni' education.doc",
+    experience: "tree experience.log",
+    projects: "cat projects.txt | flip-card",
     resume: "./show-resume --download",
     life: "sh my-life.sh; sudo shutdown"
 };
@@ -220,6 +220,6 @@ export const LIFE_CARD_INFO = [
         type: "canoe",
         title: "Canoeing",
         image: "assets/img/canoe.jpg", 
-        story: "I've canoe sprint since I was 13. I was the previous Varsity Captain of NUS Canoeing, and have represented Singapore internationally in Vietnam and Portugal!"
+        story: "I've been canoeing since age 13. I was the previous Varsity Captain of NUS Canoeing, and have represented Singapore internationally in Vietnam and Portugal!"
     }
 ];
