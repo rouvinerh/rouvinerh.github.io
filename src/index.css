@@ -198,6 +198,7 @@ section {
 .social-tooltip {
     position: relative;
     display: inline-block;
+    bottom: 8px;
 }
 
 .social-tooltip::after {
@@ -236,7 +237,7 @@ section {
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
-    padding: 2rem;
+    padding: 4rem;
 }
 
 .cert-logo {

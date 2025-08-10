@@ -93,11 +93,11 @@ export const EXPERIENCE_DATA = [
         logoSrc: 'assets/logos/paypal-logo.png',
     },
     {
-        role: 'Security Researcher',
-        company: 'Synack Red Team',
+        role: 'Bug Bounty Hunter',
+        company: 'Various Platforms',
         period: 'May 2025 — Present',
-        description: "Pentesting web and host targets on a freelance basis.",
-        logoSrc: 'assets/logos/synack.webp',
+        description: "Read my reports here: rouvin.gitbook.io/websec.",
+        logoSrc: 'assets/logos/bugbounty-logo.png'
     },
     {
         role: 'Cyber Instructor',
