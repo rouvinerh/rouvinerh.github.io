@@ -40,6 +40,12 @@ export const SOCIAL_LINKS = [
 
 export const CERTIFICATIONS = [
     {
+        href: "https://credentials.offsec.com/33df2507-9506-4f25-ac06-d2d89e5ab8cf",
+        tooltip: "OffSec Experienced Penetration Tester",
+        imageSrc: "assets/logos/osep-logo.svg",
+        alt: "OSEP"
+    },
+    {
         href: "https://credentials.offsec.com/8cf53528-7f84-458e-b035-9109ba5af955",
         tooltip: "OffSec Exploit Developer",
         imageSrc: "assets/logos/osed-logo.svg",
