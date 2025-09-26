@@ -14,8 +14,9 @@ export const ABOUT_PHRASES = [
     "a cybersecurity engineer.",
     "a CTF player.",
     "into Offensive Security.",
-    "an InfoSec student.",
-    "hacking for good."
+    "a bug triager.",
+    "a bug hunter.",
+    "a pentester."
 ];
 
 export const ABOUT_DESCRIPTION = "Hello! I'm Rouvin, an InfoSec student from the National University of Singapore specialising in Offensive Security. ";
@@ -40,6 +41,12 @@ export const SOCIAL_LINKS = [
 
 export const CERTIFICATIONS = [
     {
+        href: "https://credentials.offsec.com/d4be39ce-59af-4326-b66d-399aa86fe7d1",
+        tooltip: "OffSec Certified Expert 3",
+        imageSrc: "assets/logos/osce3-logo.png",
+        alt: "OSCE3"
+    },
+    {
         href: "https://credentials.offsec.com/33df2507-9506-4f25-ac06-d2d89e5ab8cf",
         tooltip: "OffSec Experienced Penetration Tester",
         imageSrc: "assets/logos/osep-logo.svg",
@@ -58,12 +65,6 @@ export const CERTIFICATIONS = [
         alt: "OSWE"
     },
     {
-        href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82",
-        tooltip: "Certified Red Team Expert",
-        imageSrc: "assets/logos/crte-logo.webp",
-        alt: "CRTE"
-    },
-    {
         href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com",
         tooltip: "Certified Red Team Operator",
         imageSrc: "assets/logos/crto-logo.png",
@@ -74,6 +75,12 @@ export const CERTIFICATIONS = [
         tooltip: "OffSec Certified Professional",
         imageSrc: "assets/logos/oscp-logo.svg",
         alt: "OSCP"
+    },
+        {
+        href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82",
+        tooltip: "Certified Red Team Expert",
+        imageSrc: "assets/logos/crte-logo.png",
+        alt: "CRTE"
     }
 ];
 
