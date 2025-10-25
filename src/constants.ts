@@ -65,16 +65,16 @@ export const CERTIFICATIONS = [
         alt: "OSWE"
     },
     {
-        href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com",
-        tooltip: "Certified Red Team Operator",
-        imageSrc: "assets/logos/crto-logo.png",
-        alt: "CRTO"
-    },
-    {
         href: "https://www.credential.net/e1d80a61-7960-4164-ba82-bdba4292d50b#acc.nQho8jM2",
         tooltip: "OffSec Certified Professional",
         imageSrc: "assets/logos/oscp-logo.svg",
         alt: "OSCP"
+    },
+    {
+        href: "https://eu.badgr.com/public/assertions/Ie7VP__qSp-9gAxdwyB1rw?identity__email=rouvinerh@gmail.com",
+        tooltip: "Certified Red Team Operator",
+        imageSrc: "assets/logos/crto-logo.png",
+        alt: "CRTO"
     },
         {
         href: "https://www.credential.net/6d698072-51f3-43f7-83ac-27117c629a82",
