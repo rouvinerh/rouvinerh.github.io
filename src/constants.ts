@@ -135,7 +135,7 @@ export const EXPERIENCE_DATA = [
         role: 'Security Engineer Intern',
         company: 'Ascenda Loyalty',
         period: 'May 2024 - Aug 2024',
-        description: 'Carried out white-box web application pentesting and with custom DAST tooling.',
+        description: 'Carried out white-box web application pentesting and built custom DAST tooling.',
         logoSrc: 'assets/logos/ascenda-logo.png',
     },
     {
