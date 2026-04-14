@@ -36,6 +36,18 @@ export const SOCIAL_LINKS = [
         href: "https://rouvin.gitbook.io",
         tooltip: "Blog",
         iconType: "gitbook"
+    },
+    {
+        href: "https://hackerone.com/erh",
+        tooltip: "HackerOne Profile",
+        iconType: "hackerone",
+        imageSrc: "assets/logos/hackerone-logo.png"   
+    },
+    {
+        href: "https://bugcrowd.com/erh",
+        tooltip: "Bugcrowd Profile",
+        iconType: "bugcrowd",
+        imageSrc: "assets/logos/bugcrowd-logo.png" 
     }
 ];
 
@@ -88,7 +100,7 @@ export const EDUCATION_DATA = {
     university: "National University of Singapore (NUS)",
     degree: "Bachelor of Computing in Information Security",
     expectedGraduation: "May 2026",
-    gpa: "4.74 / 5.00",
+    gpa: "4.76 / 5.00",
     deansList: {
         href: "https://credentials.nus.edu.sg/fdfc9ff6-b90c-4e0c-a705-c6fc0ad6b678",
         tooltip: "Dean's List AY23/24 Semester 2",
@@ -101,7 +113,7 @@ export const EXPERIENCE_DATA = [
     {
         role: 'OffSec Engineer Intern',
         company: 'PayPal',
-        period: 'May 2025 — Present',
+        period: 'May 2025 — Oct 2025',
         description: "Triaging bug reports and product pentesting with PayPal's OffSec team.",
         logoSrc: 'assets/logos/paypal-logo.png',
     },
@@ -109,7 +121,7 @@ export const EXPERIENCE_DATA = [
         role: 'Bug Bounty Hunter',
         company: 'Various Platforms',
         period: 'May 2025 — Present',
-        description: "Read my reports here: rouvin.gitbook.io/websec.",
+        description: "@erh on H1 or Bugcrowd. Read some of my reports here: rouvin.gitbook.io/websec",
         logoSrc: 'assets/logos/bugbounty-logo.png'
     },
     {
@@ -227,7 +239,7 @@ export const LIFE_CARD_INFO = [
         type: "travel",
         title: "Travelling",
         image: "assets/img/travel.jpg",
-        story: "When not at a desk, I love seeing the world. I've been to 25 countries and love making friends overseas. That's me in Iceland! "
+        story: "When not at a desk, I love seeing the world. I've been to 30 countries and love making friends overseas. That's me in Iceland! "
     },
     {
         type: "canoe",

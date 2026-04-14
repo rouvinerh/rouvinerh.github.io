@@ -7,6 +7,7 @@ interface SocialLinkProps {
     tooltip: string;
     icon: React.ReactNode;
     className?: string;
+    imageSrc?: string;
 }
 
 interface CertificationProps {
@@ -173,27 +174,34 @@ export const BugImagePopup = ({ isVisible, onClose }: BugImagePopupProps) => (
 );
 
 export const SocialIconsContainer = () => {
-    const getIcon = (iconType: string) => {
-        switch (iconType) {
-            case 'linkedin': return <FaLinkedin />;
-            case 'github': return <FaGithub />;
-            case 'gitbook': return <SiGitbook />;
-            default: return null;
-        }
-    };
-
-    return (
-        <div className="social-icons-container">
-            {SOCIAL_LINKS.map((link, index) => (
-                <SocialLink 
-                    key={index}
-                    href={link.href} 
-                    tooltip={link.tooltip} 
-                    icon={getIcon(link.iconType)} 
-                />
-            ))}
-        </div>
+  const getIcon = (iconType: string, imageSrc?: string) => {
+    if (imageSrc) return (
+        <img 
+            src={imageSrc} 
+            alt={iconType} 
+            style={{ width: '1em', height: '1em',  objectFit: 'contain' }} 
+        />
     );
+    switch (iconType) {
+      case 'linkedin': return <FaLinkedin />;
+      case 'github': return <FaGithub />;
+      case 'gitbook': return <SiGitbook />;
+      default: return null;
+    }
+  };
+
+  return (
+    <div className="social-icons-container">
+      {SOCIAL_LINKS.map((link, index) => (
+        <SocialLink
+          key={index}
+          href={link.href}
+          tooltip={link.tooltip}
+          icon={getIcon(link.iconType, link.imageSrc)}
+        />
+      ))}
+    </div>
+  );
 };
 
 export const CertificationsGrid = () => (
